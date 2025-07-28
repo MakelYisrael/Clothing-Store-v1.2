@@ -227,6 +227,7 @@ function backToShop() {
     document.querySelector('.checkout').style.display = 'block';
     document.querySelector('.filters').style.display = 'block';
 }
+document.getElementById('backToShopBtn').addEventListener('click', backToShop);
 
 function addNewProduct() {
     const name = document.getElementById('newProductName').value.trim();
@@ -255,7 +256,6 @@ function addNewProduct() {
     renderProducts();
 }
 document.getElementById('addNewProductBtn').addEventListener('click', addNewProduct);
-document.getElementById('backToShopBtn').addEventListener('click', backToShop);
 
 function deleteProduct(index) {
     if (confirm('Are you sure you want to delete this product?')) {
