@@ -356,6 +356,7 @@ function renderProducts() {
         container.appendChild(div);
     });
 }
+document.getElementById('goToCheckoutBtn').addEventListener('click', goToCheckout);
 
 window.onload = () => {
     renderProducts();
