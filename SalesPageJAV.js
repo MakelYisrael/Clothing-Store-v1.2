@@ -358,29 +358,6 @@ function renderProducts() {
         container.appendChild(div);
     });
 }
-// Attach event listeners to delete buttons
-    document.querySelectorAll('.delete-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const idx = parseInt(btn.getAttribute('data-idx'));
-            deleteProduct(idx);
-        });
-    });
-
-    // Attach event listeners to edit buttons
-    document.querySelectorAll('.edit-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const idx = parseInt(btn.getAttribute('data-idx'));
-            showEditProductPage(idx);
-        });
-    });
-
-    // Attach event listeners for Add to Cart buttons
-    document.querySelectorAll('.add-cart-btn').forEach((btn, i) => {
-        btn.addEventListener('click', (e) => {
-            addToCart(sampleProducts[i].name, btn);
-        });
-    });
-}
 
 window.onload = () => {
     renderProducts();
