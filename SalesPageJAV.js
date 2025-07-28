@@ -355,9 +355,9 @@ function renderProducts() {
         container.appendChild(div);
     });
 }
-document.getElementById('addToCart').addEventListener('click', addToCart);
-document.getElementsByClassName('delete-btn').addEventListener('click', deleteProduct);
-document.getElementsByClassName('edit-btn').addEventListener('click', deleteProduct);
+document.getElementById('addToCart').addEventListener('click', renderProducts);
+document.getElementsByClassName('delete-btn').addEventListener('click', renderProducts);
+document.getElementsByClassName('edit-btn').addEventListener('click', renderProducts);
 
 window.onload = () => {
     renderProducts();
