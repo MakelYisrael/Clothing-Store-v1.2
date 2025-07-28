@@ -159,7 +159,7 @@ function filterProducts() {
     });
 }
 
-document.getElementById('searchBar').addEventListener('oninput', filterProducts);
+document.getElementById('searchBar').addEventListener('input', filterProducts);
 
 function addToCart(productName, button) {
     const product = button.closest('.product');
