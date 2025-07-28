@@ -270,6 +270,7 @@ function deleteProduct(index) {
         renderProducts();
     }
 }
+document.getElementById('deleteBtn').addEventListener('click', deleteProduct);
 
 // --- Edit Product Functionality ---
 function showEditProductPage(index) {
