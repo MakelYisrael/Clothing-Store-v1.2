@@ -205,6 +205,7 @@ function goToCheckout() {
 
     document.getElementById('cartTotal').textContent = total.toFixed(2);
 }
+document.getElementById('goToCheckoutBtn').addEventListener('input', goToCheckout);
 
 function closeCart() {
     document.getElementById('cartPage').style.display = 'none';
