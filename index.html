@@ -15,32 +15,32 @@
                 <nav class="main-nav">
                     <div class="nav-left">
                         <input type="text" id="searchBar" placeholder="Search for shirts, pants, hats, etc..." oninput="filterProducts()" />
-                        <button id="addProductNavBtn" onclick="showAddProductPage()" style="display:none;">Add Product</button>
+                        <button id="addProductNavBtn" id="showAddProductPageBtn" style="display:none;">Add Product</button>
                     </div>
                     <div class="nav-right">
-                        <button id="logoutBtn" onclick="logout()" style="display:none;">Logout</button>
+                        <button id="logoutBtn" id="logoutBtn" style="display:none;">Logout</button>
                     </div>
                 </nav>
                 <div class="filters">
-                    <button onclick="filterCategory('all')">All</button>
-                    <button onclick="filterCategory('shirts')">Shirts</button>
-                    <button onclick="filterCategory('pants')">Pants</button>
-                    <button onclick="filterCategory('hats')">Hats</button>
-                    <button onclick="filterCategory('shorts')">Shorts</button>
-                    <button onclick="filterCategory('socks')">Socks</button>
-                    <button onclick="filterCategory('shoes')">Shoes</button>
-                    <button onclick="filterCategory('underwear')">Underwear</button>
+                    <button id="filterCategory('all')">All</button>
+                    <button id="filterCategory('shirts')">Shirts</button>
+                    <button id="filterCategory('pants')">Pants</button>
+                    <button id="filterCategory('hats')">Hats</button>
+                    <button id="filterCategory('shorts')">Shorts</button>
+                    <button id="filterCategory('socks')">Socks</button>
+                    <button id="filterCategory('shoes')">Shoes</button>
+                    <button id="filterCategory('underwear')">Underwear</button>
                 </div>
                 <div class="products" id="productList"></div>
                 <div class="checkout">
-                    <button onclick="goToCheckout()">Go to Checkout</button>
+                    <button id="goToCheckoutBtn">Go to Checkout</button>
                 </div>
                 <div class="cart" id="cartPage" style="display: none;">
                     <h2>Your Cart</h2>
                     <ul id="cartItems"></ul>
                     <p>Total: $<span id="cartTotal">0.00</span></p>
-                    <button onclick="completePurchase()">Purchase</button>
-                    <button onclick="closeCart()">Back to Shopping</button>
+                    <button id="completePurchaseBtn">Purchase</button>
+                    <button id="closeCartBtn">Back to Shopping</button>
                 </div>
                 <div class="login" id="loginPage">
                     <h2>Please sign in to continue</h2>
@@ -62,8 +62,8 @@
                     </select><br /><br />
                     <input type="text" id="newProductImage" placeholder="Image URL (optional)" /><br /><br />
                     <input type="number" id="newProductPrice" placeholder="Price (e.g. 19.99)" min="0" step="0.01" /><br /><br />
-                    <button onclick="addNewProduct()">Add Product</button>
-                    <button onclick="backToShop()">Back to Shop</button>
+                    <button id="addNewProductBtn">Add Product</button>
+                    <button id="backToShopBtn">Back to Shop</button>
                 </div>
                 <div class="edit-product-page" id="editProductPage" style="display:none;">
                     <h2>Edit Product</h2>
@@ -80,8 +80,8 @@
                     <input type="text" id="editProductImage" placeholder="Image URL" /><br /><br />
                     <input type="number" id="editProductPrice" placeholder="Price (e.g. 19.99)" min="0" step="0.01" /><br /><br />
                     <img id="editProductPreview" src="" alt="Preview" style="max-width:200px;display:none;" /><br /><br />
-                    <button onclick="saveEditProduct()">Save Changes</button>
-                    <button onclick="cancelEditProduct()">Cancel</button>
+                    <button id="saveEditProductBtn">Save Changes</button>
+                    <button id="cancelEditProductBtn">Cancel</button>
                 </div>
             <script type="module" src="SalesPageJAV.js"></script>    
             </body>
