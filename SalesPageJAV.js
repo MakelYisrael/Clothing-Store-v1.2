@@ -187,8 +187,6 @@ function addToCart(productName, button) {
     alert(`${productName} (${color}) x${quantity} added to cart.`);
 }
 
-document.getElementById('addNewProductBtn').addEventListener('click', addToCart);
-
 function goToCheckout() {
     document.querySelector('.products').style.display = 'none';
     document.querySelector('.checkout').style.display = 'none';
@@ -270,7 +268,6 @@ function deleteProduct(index) {
         renderProducts();
     }
 }
-document.getElementById('delete-btn').addEventListener('click', deleteProduct);
 
 // --- Edit Product Functionality ---
 function showEditProductPage(index) {
@@ -358,6 +355,9 @@ function renderProducts() {
         container.appendChild(div);
     });
 }
+document.getElementById('addToCart').addEventListener('click', addToCart);
+document.getElementsByClassName('delete-btn').addEventListener('click', deleteProduct);
+document.getElementsByClassName('edit-btn').addEventListener('click', deleteProduct);
 
 window.onload = () => {
     renderProducts();
