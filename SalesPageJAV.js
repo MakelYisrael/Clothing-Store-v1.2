@@ -358,6 +358,7 @@ function renderProducts() {
         container.appendChild(div);
     });
 }
+document.getElementById('addToCart').addEventListener('click', () => addToCart('${product.name}', this));
 document.getElementById('goToCheckoutBtn').addEventListener('click', goToCheckout);
 
 window.onload = () => {
