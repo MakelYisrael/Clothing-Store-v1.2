@@ -283,7 +283,7 @@ function renderProducts() {
     });
 }
 
-/*function signIn() {
+function signIn() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
@@ -338,8 +338,7 @@ function showLoginUI() {
     document.querySelector('.checkout').style.display = 'none';
     document.getElementById('addProductNavBtn').style.display = 'none';
     document.getElementById('logoutBtn').style.display = 'none';
-}*/
-
+}
 
 window.onload = () => {
     renderProducts();
@@ -363,8 +362,8 @@ window.onload = () => {
         document.getElementById('addProductNavBtn').style.display = 'inline-block';
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
-    const options = {
+    /*const options = {
       key: fs.readFileSync('key.pem'),
       cert: fs.readFileSync('cert.pem')
-    };
+    };*/
 };
