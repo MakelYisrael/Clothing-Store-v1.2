@@ -151,11 +151,11 @@ function filterCategory(category) {
 }
 document.getElementById('all').addEventListener('click', () => filterCategory('all'));
 document.getElementById('shirts').addEventListener('click', () => filterCategory('shirts'));
-document.getElementById('shirts').addEventListener('click', () => filterCategory('pants'));
-document.getElementById('shirts').addEventListener('click', () => filterCategory('hats'));
-document.getElementById('shirts').addEventListener('click', () => filterCategory('shorts'));
-document.getElementById('shirts').addEventListener('click', () => filterCategory('socks'));
-document.getElementById('shirts').addEventListener('click', () => filterCategory('underwear'));
+document.getElementById('pants').addEventListener('click', () => filterCategory('pants'));
+document.getElementById('hats').addEventListener('click', () => filterCategory('hats'));
+document.getElementById('shorts').addEventListener('click', () => filterCategory('shorts'));
+document.getElementById('socks').addEventListener('click', () => filterCategory('socks'));
+document.getElementById('underwear').addEventListener('click', () => filterCategory('underwear'));
 // Add similar lines for other categories as necessary
 
 function filterProducts() {
