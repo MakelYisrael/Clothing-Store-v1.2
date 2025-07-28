@@ -349,14 +349,15 @@ function renderProducts() {
             <input type="number" value="1" min="1" />
             <button id="addToCart('${product.name}', this)">Add to Cart</button>
             ${isLoggedIn ? `
-                <button class="delete-btn" onclick="deleteProduct(${idx})" style="margin-top:0.5rem;background:#bf0a30;">Delete</button>
-                <button class="edit-btn" onclick="showEditProductPage(${idx})" style="margin-top:0.5rem;background:#007bff;">Edit</button>
+                <button class="delete-btn" id="deleting" onclick="deleteProduct(${idx})" style="margin-top:0.5rem;background:#bf0a30;">Delete</button>
+                <button class="edit-btn" id="editing" onclick="showEditProductPage(${idx})" style="margin-top:0.5rem;background:#007bff;">Edit</button>
             ` : ''}
         `;
         container.appendChild(div);
     });
 }
-//document.getElementById('goToCheckoutBtn').addEventListener('click', goToCheckout);
+document.getElementById('deleting').addEventListener('click', deleteProduct);
+document.getElementById('editing').addEventListener('click', showEditProductPage);
 document.getElementById('goToCheckoutBtn').addEventListener('click', goToCheckout);
 document.getElementById('closeCartBtn').addEventListener('click', closeCart);
 document.getElementById('completePurchaseBtn').addEventListener('click', completePurchase);
