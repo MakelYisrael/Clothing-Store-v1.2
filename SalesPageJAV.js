@@ -136,9 +136,7 @@ function showLoginUI() {
     document.getElementById('logoutBtn').style.display = 'none';
 }
 
-window.signIn = signIn;
-window.logout = logout;
-
+document.getElementById('signInBtn').addEventListener('click', signIn);
 
 function filterCategory(category) {
     const products = document.querySelectorAll('.product');
