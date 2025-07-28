@@ -359,14 +359,14 @@ document.addEventListener('DOMContentLoaded', function() {
   // Add event listener to the single element with id 'addToCart'
   const addToCartButton = document.getElementById('addToCart');
   if (addToCartButton) { // Check if the element exists
-    addToCartButton.addEventListener('click', renderProducts);
+    addToCartButton.addEventListener('click', addToCart);
   }
 
   // Add event listener to all elements with class 'delete-btn'
   const deleteButtons = document.getElementsByClassName('delete-btn');
   // Iterate over the collection of elements
   for (let i = 0; i < deleteButtons.length; i++) {
-    deleteButtons[i].addEventListener('click', renderProducts);
+    deleteButtons[i].addEventListener('click', deleteProduct);
   }
 
   // Add event listener to all elements with class 'edit-btn'
