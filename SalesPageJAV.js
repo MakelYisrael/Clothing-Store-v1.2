@@ -260,6 +260,8 @@ function deleteProduct(index) {
     }
 }
 
+document.getElementById('addProductPage').addEventListener('click', showAddProductPage);
+
 // --- Edit Product Functionality ---
 function showEditProductPage(index) {
     editProductIndex = index;
