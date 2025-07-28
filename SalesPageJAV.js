@@ -212,14 +212,12 @@ function closeCart() {
     document.querySelector('.products').style.display = 'grid';
     document.querySelector('.checkout').style.display = 'block';
 }
-document.getElementById('closeCartBtn').addEventListener('click', closeCart);
 
 function completePurchase() {
     alert('Purchase completed successfully!');
     cart = [];
     goToCheckout();
 }
-document.getElementById('completePurchaseBtn').addEventListener('click', completePurchase);
 
 function showAddProductPage() {
     document.querySelector('.products').style.display = 'none';
@@ -358,8 +356,10 @@ function renderProducts() {
         container.appendChild(div);
     });
 }
-document.getElementById('addToCart').addEventListener('click', () => addToCart('${product.name}', this));
+//document.getElementById('addToCart').addEventListener('click', () => addToCart('${product.name}', this));
 document.getElementById('goToCheckoutBtn').addEventListener('click', goToCheckout);
+document.getElementById('closeCartBtn').addEventListener('click', closeCart);
+document.getElementById('completePurchaseBtn').addEventListener('click', completePurchase);
 
 window.onload = () => {
     renderProducts();
