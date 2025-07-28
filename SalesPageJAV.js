@@ -9,7 +9,7 @@ const firebaseConfig = {
     projectId: "authentication-23067",
     storageBucket: "authentication-23067.firebasestorage.app",
     messagingSenderId: "298353931477",
-    appId: "1:298353931477:web:d731711620dd53a7b65e5c"
+    appId: "1:298353931477:web:d731711620dd53a7b65e5c",
     measurementId: "G-YDZ76L3CRL"
 };
 
