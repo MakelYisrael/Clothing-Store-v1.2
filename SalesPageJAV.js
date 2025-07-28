@@ -212,12 +212,14 @@ function closeCart() {
     document.querySelector('.products').style.display = 'grid';
     document.querySelector('.checkout').style.display = 'block';
 }
+document.getElementById('closeCartBtn').addEventListener('click', closeCart);
 
 function completePurchase() {
     alert('Purchase completed successfully!');
     cart = [];
     goToCheckout();
 }
+document.getElementById('completePurchaseBtn').addEventListener('click', completePurchase);
 
 function showAddProductPage() {
     document.querySelector('.products').style.display = 'none';
