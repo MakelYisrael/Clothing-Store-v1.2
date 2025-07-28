@@ -79,6 +79,67 @@ function logout() {
     document.getElementById('logoutBtn').style.display = 'none';
 }*/
 
+function signIn() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    signInWithEmailAndPassword(auth, username, password)
+        .then((userCredential) => {
+            isLoggedIn = true;
+            showAppUI();
+            renderProducts();
+        })
+        .catch((error) => {
+            alert("Login failed: " + error.message);
+        });
+}
+
+function logout() {
+    signOut(auth).then(() => {
+        isLoggedIn = false;
+        showLoginUI();
+    }).catch((error) => {
+        alert("Logout failed: " + error.message);
+    });
+}
+
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        isLoggedIn = true;
+        showAppUI();
+        renderProducts();
+    } else {
+        isLoggedIn = false;
+        showLoginUI();
+    }
+});
+
+function showAppUI() {
+    document.getElementById('loginPage').style.display = 'none';
+    document.querySelector('header').style.display = 'block';
+    document.querySelector('nav').style.display = 'flex';
+    document.querySelector('.filters').style.display = 'block';
+    document.querySelector('.products').style.display = 'grid';
+    document.querySelector('.checkout').style.display = 'block';
+    document.getElementById('addProductNavBtn').style.display = 'inline-block';
+    document.getElementById('logoutBtn').style.display = 'inline-block';
+}
+
+function showLoginUI() {
+    document.getElementById('loginPage').style.display = 'block';
+    document.querySelector('header').style.display = 'none';
+    document.querySelector('nav').style.display = 'none';
+    document.querySelector('.filters').style.display = 'none';
+    document.querySelector('.products').style.display = 'none';
+    document.querySelector('.checkout').style.display = 'none';
+    document.getElementById('addProductNavBtn').style.display = 'none';
+    document.getElementById('logoutBtn').style.display = 'none';
+}
+
+window.signIn = signIn;
+window.logout = logout;
+
+
 function filterCategory(category) {
     const products = document.querySelectorAll('.product');
     products.forEach(p => {
@@ -283,62 +344,7 @@ function renderProducts() {
     });
 }
 
-function signIn() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
 
-    signInWithEmailAndPassword(auth, username, password)
-        .then((userCredential) => {
-            isLoggedIn = true;
-            showAppUI();
-            renderProducts();
-        })
-        .catch((error) => {
-            alert("Login failed: " + error.message);
-        });
-}
-
-function logout() {
-    signOut(auth).then(() => {
-        isLoggedIn = false;
-        showLoginUI();
-    }).catch((error) => {
-        alert("Logout failed: " + error.message);
-    });
-}
-
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-        isLoggedIn = true;
-        showAppUI();
-        renderProducts();
-    } else {
-        isLoggedIn = false;
-        showLoginUI();
-    }
-});
-
-function showAppUI() {
-    document.getElementById('loginPage').style.display = 'none';
-    document.querySelector('header').style.display = 'block';
-    document.querySelector('nav').style.display = 'flex';
-    document.querySelector('.filters').style.display = 'block';
-    document.querySelector('.products').style.display = 'grid';
-    document.querySelector('.checkout').style.display = 'block';
-    document.getElementById('addProductNavBtn').style.display = 'inline-block';
-    document.getElementById('logoutBtn').style.display = 'inline-block';
-}
-
-function showLoginUI() {
-    document.getElementById('loginPage').style.display = 'block';
-    document.querySelector('header').style.display = 'none';
-    document.querySelector('nav').style.display = 'none';
-    document.querySelector('.filters').style.display = 'none';
-    document.querySelector('.products').style.display = 'none';
-    document.querySelector('.checkout').style.display = 'none';
-    document.getElementById('addProductNavBtn').style.display = 'none';
-    document.getElementById('logoutBtn').style.display = 'none';
-}
 
 
 window.onload = () => {
