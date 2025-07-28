@@ -346,36 +346,39 @@ function renderProducts() {
                 <option>Black</option>
             </select>
             <input type="number" value="1" min="1" />
-            <button id="addToCart('${product.name}', this)">Add to Cart</button>
+            <button class="add-cart-btn" data-idx="${idx}">Add to Cart</button>
             ${isLoggedIn ? `
-                <button class="delete-btn" id="deleteProduct(${idx})" style="margin-top:0.5rem;background:#bf0a30;">Delete</button>
-                <button class="edit-btn" id="showEditProductPage(${idx})" style="margin-top:0.5rem;background:#007bff;">Edit</button>
+                <button class="delete-btn" data-idx="${idx}">Delete</button>
+                <button class="edit-btn" data-idx="${idx}">Edit</button>
             ` : ''}
         `;
         container.appendChild(div);
     });
-}// Wait for the DOM to be fully loaded before running the script
-document.addEventListener('DOMContentLoaded', function() {
-  // Add event listener to the single element with id 'addToCart'
-  const addToCartButton = document.getElementById('addToCart');
-  if (addToCartButton) { // Check if the element exists
-    addToCartButton.addEventListener('click', addToCart);
-  }
 
-  // Add event listener to all elements with class 'delete-btn'
-  const deleteButtons = document.getElementsByClassName('delete-btn');
-  // Iterate over the collection of elements
-  for (let i = 0; i < deleteButtons.length; i++) {
-    deleteButtons[i].addEventListener('click', deleteProduct);
-  }
+    // Attach Add to Cart listeners
+    document.querySelectorAll('.add-cart-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            const idx = parseInt(btn.getAttribute('data-idx'));
+            addToCart(sampleProducts[idx].name, btn);
+        });
+    });
 
-  // Add event listener to all elements with class 'edit-btn'
-  const editButtons = document.getElementsByClassName('edit-btn');
-  // Iterate over the collection of elements
-  for (let i = 0; i < editButtons.length; i++) {
-    editButtons[i].addEventListener('click', renderProducts);
-  }
-});
+    // Attach Delete listeners
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            const idx = parseInt(btn.getAttribute('data-idx'));
+            deleteProduct(idx);
+        });
+    });
+
+    // Attach Edit listeners
+    document.querySelectorAll('.edit-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            const idx = parseInt(btn.getAttribute('data-idx'));
+            showEditProductPage(idx);
+        });
+    });
+}
 
 window.onload = () => {
     renderProducts();
