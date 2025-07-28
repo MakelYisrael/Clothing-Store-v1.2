@@ -155,6 +155,7 @@ document.getElementById('pants').addEventListener('click', () => filterCategory(
 document.getElementById('hats').addEventListener('click', () => filterCategory('hats'));
 document.getElementById('shorts').addEventListener('click', () => filterCategory('shorts'));
 document.getElementById('socks').addEventListener('click', () => filterCategory('socks'));
+document.getElementById('shoes').addEventListener('click', () => filterCategory('shoes'));
 document.getElementById('underwear').addEventListener('click', () => filterCategory('underwear'));
 // Add similar lines for other categories as necessary
 
