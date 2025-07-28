@@ -219,6 +219,8 @@ function showAddProductPage() {
     document.querySelector('.filters').style.display = 'none';
 }
 
+document.getElementById('addProductNavBtn').addEventListener('click', showAddProductPage);
+
 function backToShop() {
     document.getElementById('addProductPage').style.display = 'none';
     document.querySelector('.products').style.display = 'grid';
@@ -260,7 +262,7 @@ function deleteProduct(index) {
     }
 }
 
-document.getElementById('addProductNavBtn').addEventListener('click', showAddProductPage);
+
 
 // --- Edit Product Functionality ---
 function showEditProductPage(index) {
