@@ -1,6 +1,6 @@
 // --- Firebase Setup ---
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-import { getAnalytics } from "firebase/analytics";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
 const firebaseConfig = {
@@ -48,7 +48,7 @@ const sampleProducts = [
     { name: 'Trunks', category: 'underwear', image: 'https://cdn.hanes.com/catalog/product/H/N/HNS_UFSTA4/HNS_UFSTA4_Assorted_Front.jpg', price: 8.99 }
 ];
 
-function signIn() {
+/*function signIn() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     if (username && password) {
@@ -77,7 +77,7 @@ function logout() {
     document.querySelector('.checkout').style.display = 'none';
     document.getElementById('addProductNavBtn').style.display = 'none';
     document.getElementById('logoutBtn').style.display = 'none';
-}
+}*/
 
 function filterCategory(category) {
     const products = document.querySelectorAll('.product');
@@ -340,6 +340,7 @@ function showLoginUI() {
     document.getElementById('logoutBtn').style.display = 'none';
 }
 
+
 window.onload = () => {
     renderProducts();
 
@@ -362,8 +363,8 @@ window.onload = () => {
         document.getElementById('addProductNavBtn').style.display = 'inline-block';
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
-    const options = {
+    /*const options = {
       key: fs.readFileSync('key.pem'),
       cert: fs.readFileSync('cert.pem')
-    };
+    };*/
 };
