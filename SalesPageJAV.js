@@ -176,6 +176,8 @@ function addToCart(productName, button) {
     alert(`${productName} (${color}) x${quantity} added to cart.`);
 }
 
+document.getElementById('addToCartBtn').addEventListener('click', addToCart);
+
 function goToCheckout() {
     document.querySelector('.products').style.display = 'none';
     document.querySelector('.checkout').style.display = 'none';
