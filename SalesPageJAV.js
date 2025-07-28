@@ -354,10 +354,28 @@ function renderProducts() {
         `;
         container.appendChild(div);
     });
-}
-document.getElementById('addToCart').addEventListener('click', renderProducts);
-document.getElementsByClassName('delete-btn').addEventListener('click', renderProducts);
-document.getElementsByClassName('edit-btn').addEventListener('click', renderProducts);
+}// Wait for the DOM to be fully loaded before running the script
+document.addEventListener('DOMContentLoaded', function() {
+  // Add event listener to the single element with id 'addToCart'
+  const addToCartButton = document.getElementById('addToCart');
+  if (addToCartButton) { // Check if the element exists
+    addToCartButton.addEventListener('click', renderProducts);
+  }
+
+  // Add event listener to all elements with class 'delete-btn'
+  const deleteButtons = document.getElementsByClassName('delete-btn');
+  // Iterate over the collection of elements
+  for (let i = 0; i < deleteButtons.length; i++) {
+    deleteButtons[i].addEventListener('click', renderProducts);
+  }
+
+  // Add event listener to all elements with class 'edit-btn'
+  const editButtons = document.getElementsByClassName('edit-btn');
+  // Iterate over the collection of elements
+  for (let i = 0; i < editButtons.length; i++) {
+    editButtons[i].addEventListener('click', renderProducts);
+  }
+});
 
 window.onload = () => {
     renderProducts();
