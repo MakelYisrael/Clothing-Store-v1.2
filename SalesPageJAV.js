@@ -159,6 +159,8 @@ function filterProducts() {
     });
 }
 
+document.getElementById('searchBar').addEventListener('oninput', filterProducts);
+
 function addToCart(productName, button) {
     const product = button.closest('.product');
     const quantity = parseInt(product.querySelector('input[type="number"]').value);
