@@ -270,7 +270,7 @@ function deleteProduct(index) {
         renderProducts();
     }
 }
-document.getElementById('deleteBtn').addEventListener('click', deleteProduct);
+document.getElementById('delete-btn').addEventListener('click', deleteProduct);
 
 // --- Edit Product Functionality ---
 function showEditProductPage(index) {
@@ -351,8 +351,8 @@ function renderProducts() {
             <input type="number" value="1" min="1" />
             <button onclick="addToCart('${product.name}', this)">Add to Cart</button>
             ${isLoggedIn ? `
-                <button class="delete-btn" onclick="deleteProduct(${idx})" style="margin-top:0.5rem;background:#bf0a30;">Delete</button>
-                <button class="edit-btn" onclick="showEditProductPage(${idx})" style="margin-top:0.5rem;background:#007bff;">Edit</button>
+                <button id="delete-btn" onclick="deleteProduct(${idx})" style="margin-top:0.5rem;background:#bf0a30;">Delete</button>
+                <button id="edit-btn" onclick="showEditProductPage(${idx})" style="margin-top:0.5rem;background:#007bff;">Edit</button>
             ` : ''}
         `;
         container.appendChild(div);
