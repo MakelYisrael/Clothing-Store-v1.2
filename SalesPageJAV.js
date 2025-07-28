@@ -212,7 +212,7 @@ function closeCart() {
     document.querySelector('.products').style.display = 'grid';
     document.querySelector('.checkout').style.display = 'block';
 }
-document.getElementById('closeCartBtn').addEventListener('click', backToShop);
+document.getElementById('closeCartBtn').addEventListener('click', closeCart);
 
 function completePurchase() {
     alert('Purchase completed successfully!');
