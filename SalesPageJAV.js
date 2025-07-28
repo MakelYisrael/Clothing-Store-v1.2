@@ -362,8 +362,8 @@ window.onload = () => {
         document.getElementById('addProductNavBtn').style.display = 'inline-block';
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
-    /*const options = {
+    const options = {
       key: fs.readFileSync('key.pem'),
       cert: fs.readFileSync('cert.pem')
-    };*/
+    };
 };
