@@ -149,8 +149,9 @@ function filterCategory(category) {
         }
     });
 }
-document.getElementById('all').addEventListener('click', filterCategory);
-document.getElementById('shirts').addEventListener('click', filterCategory);
+document.getElementById('all').addEventListener('click', () => filterCategory('all'));
+document.getElementById('shirts').addEventListener('click', () => filterCategory('shirts'));
+// Add similar lines for other categories as necessary
 
 function filterProducts() {
     const search = document.getElementById('searchBar').value.toLowerCase();
