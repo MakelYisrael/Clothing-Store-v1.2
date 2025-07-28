@@ -255,6 +255,7 @@ function addNewProduct() {
     renderProducts();
 }
 document.getElementById('addNewProductBtn').addEventListener('click', addNewProduct);
+document.getElementById('backToShopBtn').addEventListener('click', backToShop);
 
 function deleteProduct(index) {
     if (confirm('Are you sure you want to delete this product?')) {
