@@ -255,7 +255,6 @@ function addNewProduct() {
     backToShop();
     renderProducts();
 }
-document.getElementById('addNewProductBtn').addEventListener('click', addNewProduct);
 
 function deleteProduct(index) {
     if (confirm('Are you sure you want to delete this product?')) {
@@ -350,9 +349,7 @@ function renderProducts() {
         container.appendChild(div);
     });
 }
-
-
-
+document.getElementById('addNewProductBtn').addEventListener('click', renderProducts);
 
 window.onload = () => {
     renderProducts();
