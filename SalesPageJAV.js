@@ -149,6 +149,8 @@ function filterCategory(category) {
         }
     });
 }
+document.getElementById('filterCategory('all')').addEventListener('input', filterCategory);
+document.getElementById('id="filterCategory('shirts')').addEventListener('input', filterCategory);
 
 function filterProducts() {
     const search = document.getElementById('searchBar').value.toLowerCase();
@@ -158,7 +160,6 @@ function filterProducts() {
         p.style.display = title.includes(search) ? 'block' : 'none';
     });
 }
-
 document.getElementById('searchBar').addEventListener('input', filterProducts);
 
 function addToCart(productName, button) {
