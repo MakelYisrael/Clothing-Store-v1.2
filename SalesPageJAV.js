@@ -269,14 +269,6 @@ function deleteProduct(index) {
         renderProducts();
     }
 }
-document.addEventListener('DOMContentLoaded', function() {
-    const deletingElement = document.getElementById('deleting');
-    if (deletingElement) {
-        deletingElement.addEventListener('click', deleteProduct);
-    } else {
-        console.error("Element with ID 'deleting' not found.");
-    }
-});
 
 // --- Edit Product Functionality ---
 function showEditProductPage(index) {
@@ -365,6 +357,14 @@ function renderProducts() {
     });
 }
 //document.getElementById('deleting').addEventListener('click', deleteProduct);
+document.addEventListener('DOMContentLoaded', function() {
+    const deletingElement = document.getElementById('deleting');
+    if (deletingElement) {
+        deletingElement.addEventListener('click', deleteProduct);
+    } else {
+        console.error("Element with ID 'deleting' not found.");
+    }
+});
 document.getElementById('editing').addEventListener('click', showEditProductPage);
 document.getElementById('goToCheckoutBtn').addEventListener('click', goToCheckout);
 document.getElementById('closeCartBtn').addEventListener('click', closeCart);
