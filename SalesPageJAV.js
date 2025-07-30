@@ -349,24 +349,26 @@ function renderProducts() {
             <input type="number" value="1" min="1" />
             <button id="addToCart('${product.name}', this)">Add to Cart</button>
             ${isLoggedIn ? `
-                <button class="delete-btn" onclick="deleteProduct(${idx})" style="margin-top:0.5rem;background:#bf0a30;">Delete</button>
-                <button class="edit-btn" onclick="showEditProductPage(${idx})" style="margin-top:0.5rem;background:#007bff;">Edit</button>
+                <button class="delete-btn" data-idx="${idx}" style="margin-top:0.5rem;background:#bf0a30;">Delete</button>
+                <button class="edit-btn" data-idx="${idx}" style="margin-top:0.5rem;background:#007bff;">Edit</button>
             ` : ''}
         `;
         container.appendChild(div);
     });
 }
 // Attach event listeners for delete/edit after rendering
-    document.querySelectorAll('.delete-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            deleteProduct(parseInt(this.getAttribute('data-idx')));
-        });
-    });
-    document.querySelectorAll('.edit-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            showEditProductPage(parseInt(this.getAttribute('data-idx')));
-        });
-    });
+   document.querySelectorAll('.delete-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const idx = Number(this.dataset.idx);
+    deleteProduct(idx);
+  });
+});
+   document.querySelectorAll('.edit-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const idx = Number(this.dataset.idx);
+    deleteProduct(idx);
+  });
+});
 document.getElementById('goToCheckoutBtn').addEventListener('click', goToCheckout);
 document.getElementById('closeCartBtn').addEventListener('click', closeCart);
 document.getElementById('completePurchaseBtn').addEventListener('click', completePurchase);
