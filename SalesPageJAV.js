@@ -322,7 +322,7 @@ function cancelEditProduct() {
     document.querySelector('.checkout').style.display = 'block';
     document.querySelector('.filters').style.display = 'block';
 }
-document.getElementById('cancelEditProductBtn').addEventListener('click', cancelEditProduct);
+//document.getElementById('cancelEditProductBtn').addEventListener('click', cancelEditProduct);
 
 // Live preview for image URL in edit modal
 document.addEventListener('DOMContentLoaded', function () {
