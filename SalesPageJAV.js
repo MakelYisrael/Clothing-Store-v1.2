@@ -347,7 +347,7 @@ function renderProducts() {
                 <option>Black</option>
             </select>
             <input type="number" value="1" min="1" />
-            <button class="addToCart('${product.name}', this)">Add to Cart</button>
+            <button class="add-to-cart-btn" data-name="${product.name}">Add to Cart</button>
             ${isLoggedIn ? `
                 <button class="delete-btn" data-idx="${idx}" style="margin-top:0.5rem;background:#bf0a30;">Delete</button>
                 <button class="edit-btn" data-idx="${idx}" style="margin-top:0.5rem;background:#007bff;">Edit</button>
