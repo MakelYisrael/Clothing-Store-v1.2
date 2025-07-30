@@ -308,6 +308,11 @@ function saveEditProduct() {
     document.querySelector('.filters').style.display = 'block';
     renderProducts();
 }
+document.getElementById('editProductName').addEventListener('click', saveEditProduct);
+document.getElementById('editProductCategory').addEventListener('click', saveEditProduct);
+document.getElementById('editProductImage').addEventListener('click', saveEditProduct);
+document.getElementById('editProductPrice').addEventListener('click', saveEditProduct);
+document.getElementById('editProductPreview').addEventListener('click', saveEditProduct);
 document.getElementById('saveEditProductBtn').addEventListener('click', saveEditProduct);
 
 function cancelEditProduct() {
