@@ -307,8 +307,8 @@ function saveEditProduct() {
     document.querySelector('.checkout').style.display = 'block';
     document.querySelector('.filters').style.display = 'block';
     renderProducts();
-    document.getElementById('saveEditProductBtn').addEventListener('click', saveEditProduct);
 }
+document.getElementById('saveEditProductBtn').addEventListener('click', saveEditProduct);
 
 function cancelEditProduct() {
     editProductIndex = null;
