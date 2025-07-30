@@ -349,30 +349,24 @@ function renderProducts() {
             <input type="number" value="1" min="1" />
             <button id="addToCart('${product.name}', this)">Add to Cart</button>
             ${isLoggedIn ? `
-                <button class="delete-btn" id="deleting" onclick="deleteProduct(${idx})" style="margin-top:0.5rem;background:#bf0a30;">Delete</button>
-                <button class="edit-btn" id="editing" onclick="showEditProductPage(${idx})" style="margin-top:0.5rem;background:#007bff;">Edit</button>
+                <button class="delete-btn" onclick="deleteProduct(${idx})" style="margin-top:0.5rem;background:#bf0a30;">Delete</button>
+                <button class="edit-btn" onclick="showEditProductPage(${idx})" style="margin-top:0.5rem;background:#007bff;">Edit</button>
             ` : ''}
         `;
         container.appendChild(div);
     });
 }
-//document.getElementById('deleting').addEventListener('click', deleteProduct);
-document.addEventListener('DOMContentLoaded', function() {
-    const deletingElement = document.getElementById('deleting');
-    if (deletingElement) {
-        deletingElement.addEventListener('click', deleteProduct);
-    } else {
-        console.error("Element with ID 'deleting' not found.");
-    }
-
-    // Add a check for the 'editing' element
-    const editingElement = document.getElementById('editing');
-    if (editingElement) {
-        editingElement.addEventListener('click', showEditProductPage);
-    } else {
-        console.error("Element with ID 'editing' not found.");
-    }
-});
+// Attach event listeners for delete/edit after rendering
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            deleteProduct(parseInt(this.getAttribute('data-idx')));
+        });
+    });
+    document.querySelectorAll('.edit-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            showEditProductPage(parseInt(this.getAttribute('data-idx')));
+        });
+    });
 document.getElementById('goToCheckoutBtn').addEventListener('click', goToCheckout);
 document.getElementById('closeCartBtn').addEventListener('click', closeCart);
 document.getElementById('completePurchaseBtn').addEventListener('click', completePurchase);
