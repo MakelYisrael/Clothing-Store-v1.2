@@ -298,9 +298,7 @@ function saveEditProduct() {
     if (!name) {
         alert('Please enter a product name.');
         return;
-        document.getElementById('saveEditProductBtn').addEventListener('click', saveEditProduct);
-    }
-    
+    } 
 
     sampleProducts[editProductIndex] = { name, category, image, price };
     editProductIndex = null;
@@ -309,6 +307,7 @@ function saveEditProduct() {
     document.querySelector('.checkout').style.display = 'block';
     document.querySelector('.filters').style.display = 'block';
     renderProducts();
+    document.getElementById('saveEditProductBtn').addEventListener('click', saveEditProduct);
 }
 
 function cancelEditProduct() {
@@ -317,8 +316,8 @@ function cancelEditProduct() {
     document.querySelector('.products').style.display = 'grid';
     document.querySelector('.checkout').style.display = 'block';
     document.querySelector('.filters').style.display = 'block';
-    document.getElementById('cancelEditProductBtn').addEventListener('click', cancelEditProduct);
 }
+document.getElementById('cancelEditProductBtn').addEventListener('click', cancelEditProduct);
 
 // Live preview for image URL in edit modal
 document.addEventListener('DOMContentLoaded', function () {
