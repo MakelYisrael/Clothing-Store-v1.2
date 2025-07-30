@@ -364,8 +364,15 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         console.error("Element with ID 'deleting' not found.");
     }
+
+    // Add a check for the 'editing' element
+    const editingElement = document.getElementById('editing');
+    if (editingElement) {
+        editingElement.addEventListener('click', showEditProductPage);
+    } else {
+        console.error("Element with ID 'editing' not found.");
+    }
 });
-document.getElementById('editing').addEventListener('click', showEditProductPage);
 document.getElementById('goToCheckoutBtn').addEventListener('click', goToCheckout);
 document.getElementById('closeCartBtn').addEventListener('click', closeCart);
 document.getElementById('completePurchaseBtn').addEventListener('click', completePurchase);
