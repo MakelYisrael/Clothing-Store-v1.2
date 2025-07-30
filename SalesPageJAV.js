@@ -313,7 +313,7 @@ document.getElementById('editProductCategory').addEventListener('click', saveEdi
 document.getElementById('editProductImage').addEventListener('click', saveEditProduct);
 document.getElementById('editProductPrice').addEventListener('click', saveEditProduct);
 document.getElementById('editProductPreview').addEventListener('click', saveEditProduct);
-document.getElementById('saveEditProductBtn').addEventListener('click', saveEditProduct);
+//document.getElementById('saveEditProductBtn').addEventListener('click', saveEditProduct);
 
 function cancelEditProduct() {
     editProductIndex = null;
