@@ -242,7 +242,6 @@ function addNewProduct() {
     const image = document.getElementById('newProductImage').value.trim() || 'https://via.placeholder.com/200x150?text=New+Product';
     const priceInput = document.getElementById('newProductPrice').value;
     const price = priceInput ? parseFloat(priceInput) : 19.99;
-
     if (!name) {
         alert('Please enter a product name.');
         return;
@@ -262,6 +261,7 @@ function addNewProduct() {
     backToShop();
     renderProducts();
 }
+document.getElementById('addNewProductBtn').addEventListener('click', addNewProduct);
 
 function deleteProduct(index) {
     if (confirm('Are you sure you want to delete this product?')) {
