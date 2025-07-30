@@ -347,7 +347,7 @@ function renderProducts() {
                 <option>Black</option>
             </select>
             <input type="number" value="1" min="1" />
-            <button id="addToCart('${product.name}', this)">Add to Cart</button>
+            <button class="addToCart('${product.name}', this)">Add to Cart</button>
             ${isLoggedIn ? `
                 <button class="delete-btn" data-idx="${idx}" style="margin-top:0.5rem;background:#bf0a30;">Delete</button>
                 <button class="edit-btn" data-idx="${idx}" style="margin-top:0.5rem;background:#007bff;">Edit</button>
@@ -355,8 +355,7 @@ function renderProducts() {
         `;
         container.appendChild(div);
     });
-}
-// Attach event listeners for delete/edit after rendering
+    // Attach event listeners for delete/edit after rendering
    document.querySelectorAll('.delete-btn').forEach(btn => {
   btn.addEventListener('click', function() {
     const idx = Number(this.dataset.idx);
@@ -366,9 +365,15 @@ function renderProducts() {
    document.querySelectorAll('.edit-btn').forEach(btn => {
   btn.addEventListener('click', function() {
     const idx = Number(this.dataset.idx);
-    deleteProduct(idx);
+    showEditProductPage(idx);
   });
 });
+    container.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    addToCart(this.dataset.name, this);
+  });
+});
+}
 document.getElementById('goToCheckoutBtn').addEventListener('click', goToCheckout);
 document.getElementById('closeCartBtn').addEventListener('click', closeCart);
 document.getElementById('completePurchaseBtn').addEventListener('click', completePurchase);
