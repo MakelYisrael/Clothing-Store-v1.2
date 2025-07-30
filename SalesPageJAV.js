@@ -356,13 +356,13 @@ function renderProducts() {
         container.appendChild(div);
     });
     // Attach event listeners for delete/edit after rendering
-   document.querySelectorAll('.delete-btn').forEach(btn => {
+   container.querySelectorAll('.delete-btn').forEach(btn => {
   btn.addEventListener('click', function() {
     const idx = Number(this.dataset.idx);
     deleteProduct(idx);
   });
 });
-   document.querySelectorAll('.edit-btn').forEach(btn => {
+   container.querySelectorAll('.edit-btn').forEach(btn => {
   btn.addEventListener('click', function() {
     const idx = Number(this.dataset.idx);
     showEditProductPage(idx);
