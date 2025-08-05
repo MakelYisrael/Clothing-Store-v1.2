@@ -48,37 +48,6 @@ const sampleProducts = [
     { name: 'Trunks', category: 'underwear', image: 'https://cdn.hanes.com/catalog/product/H/N/HNS_UFSTA4/HNS_UFSTA4_Assorted_Front.jpg', price: 8.99 }
 ];
 
-/*function signIn() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    if (username && password) {
-        isLoggedIn = true;
-        document.getElementById('loginPage').style.display = 'none';
-        document.querySelector('header').style.display = 'block';
-        document.querySelector('nav').style.display = 'flex';
-        document.querySelector('.filters').style.display = 'block';
-        document.querySelector('.products').style.display = 'grid';
-        document.querySelector('.checkout').style.display = 'block';
-        document.getElementById('addProductNavBtn').style.display = 'inline-block';
-        document.getElementById('logoutBtn').style.display = 'inline-block';
-        renderProducts();
-    } else {
-        alert('Enter valid credentials.');
-    }
-}
-
-function logout() {
-    isLoggedIn = false;
-    document.getElementById('loginPage').style.display = 'block';
-    document.querySelector('header').style.display = 'none';
-    document.querySelector('nav').style.display = 'none';
-    document.querySelector('.filters').style.display = 'none';
-    document.querySelector('.products').style.display = 'none';
-    document.querySelector('.checkout').style.display = 'none';
-    document.getElementById('addProductNavBtn').style.display = 'none';
-    document.getElementById('logoutBtn').style.display = 'none';
-}*/
-
 function signIn() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
@@ -308,11 +277,6 @@ function saveEditProduct() {
     document.querySelector('.filters').style.display = 'block';
     renderProducts();
 }
-/*document.getElementById('editProductName').addEventListener('click', saveEditProduct);
-document.getElementById('editProductCategory').addEventListener('click', saveEditProduct);
-document.getElementById('editProductImage').addEventListener('click', saveEditProduct);
-document.getElementById('editProductPrice').addEventListener('click', saveEditProduct);
-document.getElementById('editProductPreview').addEventListener('click', saveEditProduct);*/
 document.getElementById('saveEditProductBtn').addEventListener('click', saveEditProduct);
 
 function cancelEditProduct() {
@@ -408,3 +372,4 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
