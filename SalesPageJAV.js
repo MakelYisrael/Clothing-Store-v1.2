@@ -8,7 +8,7 @@ const firebaseConfig = {
     apiKey: "AIzaSyAkONo3PzKXEyLOYhPmavD6A9bYkali9yw",
     authDomain: "authentication-23067.firebaseapp.com",
     projectId: "authentication-23067",
-    storageBucket: "authentication-23067.firebasestorage.app",
+    storageBucket: "authentication-23067.appspot.com",
     messagingSenderId: "298353931477",
     appId: "1:298353931477:web:d731711620dd53a7b65e5c",
     measurementId: "G-YDZ76L3CRL"
@@ -223,7 +223,7 @@ function goToCheckout() {
 
     document.getElementById('cartTotal').textContent = total.toFixed(2);
 }
-document.getElementById('goToCheckoutBtn').addEventListener('input', goToCheckout);
+document.getElementById('goToCheckoutBtn').addEventListener('click', goToCheckout);
 
 function closeCart() {
     document.getElementById('cartPage').style.display = 'none';
@@ -428,6 +428,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
