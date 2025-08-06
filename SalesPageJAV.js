@@ -2,6 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAkONo3PzKXEyLOYhPmavD6A9bYkali9yw",
@@ -16,6 +17,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const analytics = getAnalytics(app);
+const db = getFirestore(app);
 
 // script.js
 let isLoggedIn = false;
@@ -72,9 +74,10 @@ function logout() {
     });
 }
 
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
     if (user) {
         isLoggedIn = true;
+        await loadCartFromFirestore();
         showAppUI();
         renderProducts();
     } else {
@@ -152,8 +155,54 @@ function addToCart(productName, button) {
     } else {
         cart.push({ name: productName, color, quantity, price });
     }
-
+    
+    await saveCartToFirestore(cart);
     alert(`${productName} (${color}) x${quantity} added to cart.`);
+}
+
+// Save cart to Firestore
+async function saveCartToFirestore(cart) {
+    const user = auth.currentUser;
+    if (user) {
+        const userRef = doc(db, "users", user.uid);
+        await setDoc(userRef, { cart }, { merge: true });
+    }
+}
+
+// Retrieve cart from Firestore
+async function loadCartFromFirestore() {
+    const user = auth.currentUser;
+    if (user) {
+        const userRef = doc(db, "users", user.uid);
+        const userSnap = await getDoc(userRef);
+        if (userSnap.exists()) {
+            cart = userSnap.data().cart || [];
+        }
+    }
+}
+
+// Add order to payment history
+async function addOrderToHistory(order) {
+    const user = auth.currentUser;
+    if (user) {
+        const userRef = doc(db, "users", user.uid);
+        await updateDoc(userRef, {
+            history: arrayUnion(order)
+        });
+    }
+}
+
+// Load payment history
+async function loadHistoryFromFirestore() {
+    const user = auth.currentUser;
+    if (user) {
+        const userRef = doc(db, "users", user.uid);
+        const userSnap = await getDoc(userRef);
+        if (userSnap.exists()) {
+            return userSnap.data().history || [];
+        }
+    }
+    return [];
 }
 
 function goToCheckout() {
@@ -184,8 +233,15 @@ function closeCart() {
 
 function completePurchase() {
     alert('Purchase completed successfully!');
-    cart = [];
-    goToCheckout();
+   const order = {
+       items: [...cart],
+       date: new Date().toISOString(),
+       paymentStatus: 'paid'
+   };
+   await addOrderToHistory(order);
+   cart = [];
+   await saveCartToFirestore(cart);
+   goToCheckout();
 }
 
 function showAddProductPage() {
@@ -372,4 +428,5 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
