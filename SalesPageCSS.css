@@ -47,6 +47,7 @@ header {
 
 .filters label {
     font-weight: bold;
+    margin-top: 0.5rem;
     margin-right: 0.5rem;
     color: #002868;
 }
@@ -214,5 +215,6 @@ header {
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.10);
 }
+
 
 
