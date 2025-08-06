@@ -45,26 +45,29 @@ header {
         background-color: #001f4d;
     }
 
-.filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    justify-content: center;
-    margin: 1rem 0;
+.filters label {
+    font-weight: bold;
+    margin-right: 0.5rem;
+    color: #002868;
 }
 
-    .filters button {
-        background: #002868;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        padding: 0.5rem 1rem;
-        cursor: pointer;
-    }
+#categoryDropdown {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #002868;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: border-color 0.3s ease;
+}
 
-        .filters button:hover {
-            background: #bf0a30;
-        }
+#categoryDropdown:hover,
+#categoryDropdown:focus {
+    border-color: #bf0a30;
+    outline: none;
+}
 
 .products {
     display: grid;
@@ -211,3 +214,4 @@ header {
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.10);
 }
+
