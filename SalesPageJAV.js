@@ -122,23 +122,28 @@ function filterCategory(category) {
     });
 }
 
-function renderCategoryFilters() {
+function renderCategoryDropdown() {
     const uniqueCategories = [...new Set(sampleProducts.map(p => p.category))];
-    const categoryContainer = document.getElementById('categoryFilters');
-    categoryContainer.innerHTML = '';
+    const dropdown = document.getElementById('categoryDropdown');
+    dropdown.innerHTML = '';
 
-    // Create "All" button
-    const allBtn = document.createElement('button');
-    allBtn.textContent = 'All';
-    allBtn.addEventListener('click', () => filterCategory('all'));
-    categoryContainer.appendChild(allBtn);
+    // Add the default "All" option
+    const allOption = document.createElement('option');
+    allOption.value = 'all';
+    allOption.textContent = 'All';
+    dropdown.appendChild(allOption);
 
-    // Create buttons for each category
+    // Add an option for each unique category
     uniqueCategories.forEach(category => {
-        const btn = document.createElement('button');
-        btn.textContent = category.charAt(0).toUpperCase() + category.slice(1);
-        btn.addEventListener('click', () => filterCategory(category));
-        categoryContainer.appendChild(btn);
+        const option = document.createElement('option');
+        option.value = category;
+        option.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+        dropdown.appendChild(option);
+    });
+
+    // Handle filtering on change
+    dropdown.addEventListener('change', () => {
+        filterCategory(dropdown.value);
     });
 }
 
@@ -418,7 +423,7 @@ document.getElementById('completePurchaseBtn').addEventListener('click', complet
 
 window.onload = () => {
     renderProducts();
-    renderCategoryFilters();
+    renderCategoryDropdown()
 
     if (!isLoggedIn) {
         document.getElementById('loginPage').style.display = 'block';
@@ -440,6 +445,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
