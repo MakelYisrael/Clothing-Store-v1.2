@@ -121,15 +121,26 @@ function filterCategory(category) {
         }
     });
 }
-document.getElementById('all').addEventListener('click', () => filterCategory('all'));
-document.getElementById('shirts').addEventListener('click', () => filterCategory('shirts'));
-document.getElementById('pants').addEventListener('click', () => filterCategory('pants'));
-document.getElementById('hats').addEventListener('click', () => filterCategory('hats'));
-document.getElementById('shorts').addEventListener('click', () => filterCategory('shorts'));
-document.getElementById('socks').addEventListener('click', () => filterCategory('socks'));
-document.getElementById('shoes').addEventListener('click', () => filterCategory('shoes'));
-document.getElementById('underwear').addEventListener('click', () => filterCategory('underwear'));
-// Add similar lines for other categories as necessary
+
+function renderCategoryFilters() {
+    const uniqueCategories = [...new Set(sampleProducts.map(p => p.category))];
+    const categoryContainer = document.getElementById('categoryFilters');
+    categoryContainer.innerHTML = '';
+
+    // Create "All" button
+    const allBtn = document.createElement('button');
+    allBtn.textContent = 'All';
+    allBtn.addEventListener('click', () => filterCategory('all'));
+    categoryContainer.appendChild(allBtn);
+
+    // Create buttons for each category
+    uniqueCategories.forEach(category => {
+        const btn = document.createElement('button');
+        btn.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+        btn.addEventListener('click', () => filterCategory(category));
+        categoryContainer.appendChild(btn);
+    });
+}
 
 function filterProducts() {
     const search = document.getElementById('searchBar').value.toLowerCase();
@@ -407,6 +418,7 @@ document.getElementById('completePurchaseBtn').addEventListener('click', complet
 
 window.onload = () => {
     renderProducts();
+    renderCategoryFilters();
 
     if (!isLoggedIn) {
         document.getElementById('loginPage').style.display = 'block';
@@ -428,6 +440,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
