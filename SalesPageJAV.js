@@ -23,6 +23,7 @@ const db = getFirestore(app);
 let isLoggedIn = false;
 let cart = [];
 let editProductIndex = null;
+let currentUser = null;
 
 const sampleProducts = [
     { name: 'Classic Shirt', category: 'shirts', image: 'https://steadyclothing.com/cdn/shop/products/ST35613_teal__08619.jpg?v=1715893831&width=1200', price: 19.99 },
@@ -73,14 +74,17 @@ function logout() {
         alert("Logout failed: " + error.message);
     });
 }
-// --- Variable to store the signed-in user ---
-let currentUser = null;
+
 // --- Listen for when auth state changes ---
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
     if (user) {
         console.log("✅ User signed in:", user.uid);
         currentUser = user;
+        // Load saved cart
+        await loadCartFromFirestore();
         saveCartToFirestore(); // Save immediately when they sign in
+        // Render cart on page
+        renderCart();
     } else {
         console.log("⚠ No user signed in. Cart will not be saved.");
         currentUser = null;
@@ -191,6 +195,7 @@ async function saveCartToFirestore() {
 // --- Function to update the cart ---
 function updateCart(newCart) {
     cart = newCart;
+    renderCart();
     saveCartToFirestore(); // Auto-save whenever cart changes
 }
 
@@ -454,6 +459,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
