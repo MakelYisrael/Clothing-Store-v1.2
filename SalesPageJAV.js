@@ -260,15 +260,15 @@ function closeCart() {
 }
 
 async function completePurchase() {
-    alert('Purchase completed successfully!');
    const order = {
        items: [...cart],
        date: new Date().toISOString(),
        paymentStatus: 'paid'
    };
    await addOrderToHistory(order);
-   cart = [];
    await saveCartToFirestore(cart);
+   cart = [];
+    alert('Purchase completed successfully!');
    goToCheckout();
 }
 
@@ -466,6 +466,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
