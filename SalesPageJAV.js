@@ -198,6 +198,13 @@ function updateCart(newCart) {
     renderCart();
     saveCartToFirestore(); // Auto-save whenever cart changes
 }
+// Render cart to page
+function renderCart() {
+    const cartContainer = document.getElementById("cart");
+    cartContainer.innerHTML = cart.map(item => `
+        <li>${item.name} - Qty: ${item.qty} - $${item.price}</li>
+    `).join("");
+}
 
 // Retrieve cart from Firestore
 async function loadCartFromFirestore() {
@@ -459,6 +466,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
