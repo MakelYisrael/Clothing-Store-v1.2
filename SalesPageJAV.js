@@ -66,15 +66,6 @@ function signIn() {
         });
 }
 
-function logout() {
-    signOut(auth).then(() => {
-        isLoggedIn = false;
-        showLoginUI();
-    }).catch((error) => {
-        alert("Logout failed: " + error.message);
-    });
-}
-
 // --- Listen for when auth state changes ---
 onAuthStateChanged(auth, async (user) => {
     if (user) {
@@ -442,6 +433,15 @@ document.getElementById('goToCheckoutBtn').addEventListener('click', goToCheckou
 document.getElementById('closeCartBtn').addEventListener('click', closeCart);
 document.getElementById('completePurchaseBtn').addEventListener('click', completePurchase);
 
+function logout() {
+    signOut(auth).then(() => {
+        isLoggedIn = false;
+        showLoginUI();
+    }).catch((error) => {
+        alert("Logout failed: " + error.message);
+    });
+}
+
 window.onload = () => {
     renderProducts();
     renderCategoryDropdown()
@@ -466,6 +466,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
