@@ -73,16 +73,17 @@ function logout() {
         alert("Logout failed: " + error.message);
     });
 }
-
-onAuthStateChanged(auth, async (user) => {
+// --- Variable to store the signed-in user ---
+let currentUser = null;
+// --- Listen for when auth state changes ---
+onAuthStateChanged(auth, (user) => {
     if (user) {
-        isLoggedIn = true;
-        await loadCartFromFirestore();
-        showAppUI();
-        renderProducts();
+        console.log("✅ User signed in:", user.uid);
+        currentUser = user;
+        saveCartToFirestore(); // Save immediately when they sign in
     } else {
-        isLoggedIn = false;
-        showLoginUI();
+        console.log("⚠ No user signed in. Cart will not be saved.");
+        currentUser = null;
     }
 });
 
@@ -176,13 +177,21 @@ async function addToCart(productName, button) {
     alert(`${productName} (${color}) x${quantity} added to cart.`);
 }
 
-// Save cart to Firestore
-async function saveCartToFirestore(cart) {
-    const user = auth.currentUser;
-    if (user) {
-        const userRef = doc(db, "users", user.uid);
+// --- Function to save cart to Firestore ---
+async function saveCartToFirestore() {
+    if (!currentUser) return; // Don't save if no user
+    try {
+        const userRef = doc(db, "users", currentUser.uid);
         await setDoc(userRef, { cart }, { merge: true });
+        console.log("🛒 Cart saved successfully to Firestore!");
+    } catch (error) {
+        console.error("❌ Error saving cart:", error);
     }
+}
+// --- Function to update the cart ---
+function updateCart(newCart) {
+    cart = newCart;
+    saveCartToFirestore(); // Auto-save whenever cart changes
 }
 
 // Retrieve cart from Firestore
@@ -445,6 +454,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
