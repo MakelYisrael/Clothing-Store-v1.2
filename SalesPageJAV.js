@@ -190,13 +190,17 @@ function updateCart(newCart) {
     saveCartToFirestore(); // Auto-save whenever cart changes
 }
 // Render cart to page
-function renderCart() {
-    const cartContainer = document.getElementById("cart");
-    cartContainer.innerHTML = cart.map(item => `
-        <li>${item.name} - Qty: ${item.qty} - $${item.price}</li>
+function renderCartUI() {
+    const cartContainer = document.getElementById("cart-items");
+    if (!cartContainer) return;
+
+    cartContainer.innerHTML = cart.map((item, index) => `
+        <li>
+            ${item.name} - $${item.price}
+            <button onclick="removeFromCart(${index})">Remove</button>
+        </li>
     `).join("");
 }
-
 // Load cart from Firestore
 async function loadCartFromFirestore() {
     if (!auth.currentUser) return;
@@ -475,6 +479,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
