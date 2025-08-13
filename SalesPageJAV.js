@@ -67,19 +67,17 @@ function signIn() {
         });
 }
 
-// --- Listen for when auth state changes ---
-onAuthStateChanged(auth, async (user) => {
+// --- Auth State Change ---
+onAuthStateChanged(auth, (user) => {
+    stopListeningToCart(); // Stop old listener
+
     if (user) {
-        console.log("✅ User signed in:", user.uid);
-        currentUser = user;
-        // Load saved cart
-        await loadCartFromFirestore();
-        saveCartToFirestore(); // Save immediately when they sign in
-        // Render cart on page
-        renderCart();
+        console.log(`✅ Logged in as ${user.email}`);
+        listenToCartChanges(); // Start new real-time listener
     } else {
-        console.log("⚠ No user signed in. Cart will not be saved.");
-        currentUser = null;
+        console.log("🚪 Logged out, clearing cart.");
+        cart = [];
+        renderCartUI();
     }
 });
 
@@ -159,6 +157,11 @@ function addToCart(item) {
     cart.push(item);
     renderCartUI();
     saveCartToFirestore(); // Saves and instantly syncs
+}
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    renderCartUI();
+    saveCartToFirestore();
 }
 
 // --- Function to save cart to Firestore ---
@@ -468,6 +471,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
