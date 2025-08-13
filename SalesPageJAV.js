@@ -168,8 +168,8 @@ async function addToCart(productName, button) {
         cart.push({ name: productName, color, quantity, price });
     }
     
-    await saveCartToFirestore(cart);
     alert(`${productName} (${color}) x${quantity} added to cart.`);
+    await saveCartToFirestore(cart);
 }
 
 // --- Function to save cart to Firestore ---
@@ -177,7 +177,11 @@ async function saveCartToFirestore() {
     if (!auth.currentUser) return; // Skip if not logged in
     try {
         const userRef = doc(db, "users", auth.currentUser.uid);
-        await setDoc(userRef, { cart }, { merge: true });
+        await setDoc(
+            userRef,
+            { cart }, // Only update the cart field
+            { merge: true } // Keep other fields like email, orders, etc.
+        );
         console.log("🛒 Cart saved successfully to Firestore!");
     } catch (error) {
         console.error("❌ Error saving cart:", error);
@@ -208,15 +212,15 @@ async function loadCartFromFirestore() {
         const userRef = doc(db, "users", auth.currentUser.uid);
         const docSnap = await getDoc(userRef);
 
-        if (docSnap.exists() && docSnap.data().cart) {
-            cart = docSnap.data().cart;
+        if (docSnap.exists()) {
+            const data = docSnap.data();
+            cart = Array.isArray(data.cart) ? data.cart : [];
             console.log("📦 Cart loaded from Firestore:", cart);
-            renderCartUI();
         } else {
-            console.log("ℹ️ No saved cart found, starting empty.");
             cart = [];
-            renderCartUI();
+            console.log("ℹ️ No saved cart found, starting empty.");
         }
+        renderCartUI();
     } catch (error) {
         console.error("❌ Error loading cart:", error);
     }
@@ -479,6 +483,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
