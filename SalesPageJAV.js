@@ -174,9 +174,9 @@ async function addToCart(productName, button) {
 
 // --- Function to save cart to Firestore ---
 async function saveCartToFirestore() {
-    if (!currentUser) return; // Don't save if no user
+    if (!auth.currentUser) return; // Skip if not logged in
     try {
-        const userRef = doc(db, "users", currentUser.uid);
+        const userRef = doc(db, "users", auth.currentUser.uid);
         await setDoc(userRef, { cart }, { merge: true });
         console.log("🛒 Cart saved successfully to Firestore!");
     } catch (error) {
@@ -197,15 +197,24 @@ function renderCart() {
     `).join("");
 }
 
-// Retrieve cart from Firestore
+// Load cart from Firestore
 async function loadCartFromFirestore() {
-    const user = auth.currentUser;
-    if (user) {
-        const userRef = doc(db, "users", user.uid);
-        const userSnap = await getDoc(userRef);
-        if (userSnap.exists()) {
-            cart = userSnap.data().cart || [];
+    if (!auth.currentUser) return;
+    try {
+        const userRef = doc(db, "users", auth.currentUser.uid);
+        const docSnap = await getDoc(userRef);
+
+        if (docSnap.exists() && docSnap.data().cart) {
+            cart = docSnap.data().cart;
+            console.log("📦 Cart loaded from Firestore:", cart);
+            renderCartUI();
+        } else {
+            console.log("ℹ️ No saved cart found, starting empty.");
+            cart = [];
+            renderCartUI();
         }
+    } catch (error) {
+        console.error("❌ Error loading cart:", error);
     }
 }
 
@@ -260,16 +269,16 @@ function closeCart() {
 }
 
 async function completePurchase() {
+   alert('Purchase completed successfully!');
    const order = {
        items: [...cart],
        date: new Date().toISOString(),
        paymentStatus: 'paid'
    };
    await addOrderToHistory(order);
-   await saveCartToFirestore(cart);
    cart = [];
-    alert('Purchase completed successfully!');
-   goToCheckout();
+   renderCartUI();
+   await saveCartToFirestore(cart);
 }
 
 function showAddProductPage() {
@@ -466,6 +475,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
