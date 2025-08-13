@@ -154,22 +154,11 @@ function filterProducts() {
 }
 document.getElementById('searchBar').addEventListener('input', filterProducts);
 
-async function addToCart(productName, button) {
-    alert(`${productName} (${color}) x${quantity} added to cart.`);
-    const product = button.closest('.product');
-    const quantity = parseInt(product.querySelector('input[type="number"]').value);
-    const color = product.querySelector('select').value;
-    // Find the product in sampleProducts to get the price
-    const prodObj = sampleProducts.find(p => p.name === productName);
-    const price = prodObj ? prodObj.price : 19.99;
-
-    const existingItem = cart.find(item => item.name === productName && item.color === color);
-    if (existingItem) {
-        existingItem.quantity += quantity;
-    } else {
-        cart.push({ name: productName, color, quantity, price });
-    }
-    await saveCartToFirestore(cart);
+// --- Cart Modification ---
+function addToCart(item) {
+    cart.push(item);
+    renderCartUI();
+    saveCartToFirestore(); // Saves and instantly syncs
 }
 
 // --- Function to save cart to Firestore ---
@@ -479,6 +468,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
