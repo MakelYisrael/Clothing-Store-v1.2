@@ -25,7 +25,7 @@ let cart = [];
 let editProductIndex = null;
 let currentUser = null;
 let unsubscribeCartListener = null;
-let stopListeningCart = null;
+let stopListeningToCart = null;
 
 const sampleProducts = [
     { name: 'Classic Shirt', category: 'shirts', image: 'https://steadyclothing.com/cdn/shop/products/ST35613_teal__08619.jpg?v=1715893831&width=1200', price: 19.99 },
@@ -490,6 +490,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
