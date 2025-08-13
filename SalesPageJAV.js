@@ -154,6 +154,7 @@ function filterProducts() {
 document.getElementById('searchBar').addEventListener('input', filterProducts);
 
 async function addToCart(productName, button) {
+    alert(`${productName} (${color}) x${quantity} added to cart.`);
     const product = button.closest('.product');
     const quantity = parseInt(product.querySelector('input[type="number"]').value);
     const color = product.querySelector('select').value;
@@ -167,8 +168,6 @@ async function addToCart(productName, button) {
     } else {
         cart.push({ name: productName, color, quantity, price });
     }
-    
-    alert(`${productName} (${color}) x${quantity} added to cart.`);
     await saveCartToFirestore(cart);
 }
 
@@ -483,6 +482,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
