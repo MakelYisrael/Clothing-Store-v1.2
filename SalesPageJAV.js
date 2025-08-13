@@ -175,6 +175,24 @@ async function saveCartToFirestore() {
         console.error("❌ Error saving cart:", error);
     }
 }
+// --- Listen for Real-Time Cart Updates ---
+function listenToCartChanges() {
+    if (!auth.currentUser) return;
+
+    const userRef = doc(db, "users", auth.currentUser.uid);
+
+    unsubscribeCartListener = onSnapshot(userRef, (docSnap) => {
+        if (docSnap.exists()) {
+            const data = docSnap.data();
+            cart = Array.isArray(data.cart) ? data.cart : [];
+            console.log("📦 Cart updated in real time:", cart);
+            renderCartUI();
+        }
+    }, (error) => {
+        console.error("❌ Real-time cart listener error:", error);
+    });
+}
+
 // --- Function to update the cart ---
 function updateCart(newCart) {
     cart = newCart;
@@ -471,6 +489,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
