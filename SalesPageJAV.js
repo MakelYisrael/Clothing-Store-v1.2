@@ -24,6 +24,7 @@ let isLoggedIn = false;
 let cart = [];
 let editProductIndex = null;
 let currentUser = null;
+let unsubscribeCartListener = null;
 
 const sampleProducts = [
     { name: 'Classic Shirt', category: 'shirts', image: 'https://steadyclothing.com/cdn/shop/products/ST35613_teal__08619.jpg?v=1715893831&width=1200', price: 19.99 },
@@ -176,11 +177,7 @@ async function saveCartToFirestore() {
     if (!auth.currentUser) return; // Skip if not logged in
     try {
         const userRef = doc(db, "users", auth.currentUser.uid);
-        await setDoc(
-            userRef,
-            { cart }, // Only update the cart field
-            { merge: true } // Keep other fields like email, orders, etc.
-        );
+        await setDoc(userRef, { cart }, { merge: true });
         console.log("🛒 Cart saved successfully to Firestore!");
     } catch (error) {
         console.error("❌ Error saving cart:", error);
@@ -482,6 +479,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
