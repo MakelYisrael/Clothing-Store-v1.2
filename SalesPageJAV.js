@@ -74,6 +74,7 @@ onAuthStateChanged(auth, (user) => {
 
     if (user) {
         console.log(`✅ Logged in as ${user.email}`);
+        loadCartFromFirestore();
         listenToCartChanges(); // Start new real-time listener
     } else {
         console.log("🚪 Logged out, clearing cart.");
@@ -490,6 +491,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
