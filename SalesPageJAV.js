@@ -303,6 +303,7 @@ function goToCheckout() {
     document.getElementById('cartTotal').textContent = total.toFixed(2);
 }
 document.getElementById('goToCheckoutBtn').addEventListener('click', goToCheckout);
+renderCartUI();
 
 function closeCart() {
     document.getElementById('cartPage').style.display = 'none';
@@ -522,6 +523,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
