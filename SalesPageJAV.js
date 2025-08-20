@@ -416,7 +416,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Renders all products from sampleProducts
-const idx = Number(this.dataset.idx);
 function renderProducts() {
     const container = document.getElementById('productList');
     container.innerHTML = '';
@@ -445,19 +444,19 @@ function renderProducts() {
     // Attach event listeners for delete/edit after rendering
    container.querySelectorAll('.delete-btn').forEach(btn => {
   btn.addEventListener('click', function() {
-    //const idx = Number(this.dataset.idx);
+    const idx = Number(this.dataset.idx);
     deleteProduct(idx);
   });
 });
    container.querySelectorAll('.edit-btn').forEach(btn => {
   btn.addEventListener('click', function() {
-    //const idx = Number(this.dataset.idx);
+    const idx = Number(this.dataset.idx);
     showEditProductPage(idx);
   });
 });
   container.querySelectorAll('.add-to-cart-btn').forEach(btn => {
   btn.addEventListener('click', function() {
-  //const product = { ...sampleProducts[idx] }; // copy base product
+  const product = { ...sampleProducts[idx] }; // copy base product
   const parent = this.closest('.product');
   product.color = parent.querySelector('select').value;
   product.quantity = parseInt(parent.querySelector('input').value, 10) || 1;
@@ -502,6 +501,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
