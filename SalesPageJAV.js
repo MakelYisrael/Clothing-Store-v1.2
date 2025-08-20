@@ -285,7 +285,6 @@ async function loadHistoryFromFirestore() {
 }
 
 function goToCheckout() {
-    renderCartUI();
     document.querySelector('.products').style.display = 'none';
     document.querySelector('.checkout').style.display = 'none';
     document.getElementById('cartPage').style.display = 'block';
@@ -523,6 +522,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
