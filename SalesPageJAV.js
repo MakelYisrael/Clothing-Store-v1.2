@@ -300,7 +300,7 @@ async function completePurchase() {
    await addOrderToHistory(order);
    cart = [];
    renderCartUI();
-   //await saveCartToFirestore(cart);
+   await saveCartToFirestore(cart);
 }
 
 function showAddProductPage() {
@@ -501,6 +501,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
