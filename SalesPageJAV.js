@@ -67,6 +67,23 @@ function signIn() {
             alert("Login failed: " + error.message);
         });
 }
+// --- Listen for Real-Time Cart Updates ---
+function listenToCartChanges() {
+    if (!auth.currentUser) return;
+
+    const userRef = doc(db, "users", auth.currentUser.uid);
+
+    unsubscribeCartListener = onSnapshot(userRef, (docSnap) => {
+        if (docSnap.exists()) {
+            const data = docSnap.data();
+            cart = Array.isArray(data.cart) ? data.cart : [];
+            console.log("📦 Cart updated in real time:", cart);
+            renderCartUI();
+        }
+    }, (error) => {
+        console.error("❌ Real-time cart listener error:", error);
+    });
+}
 
 // --- Auth State Change ---
 onAuthStateChanged(auth, (user) => {
@@ -175,23 +192,6 @@ async function saveCartToFirestore() {
     } catch (error) {
         console.error("❌ Error saving cart:", error);
     }
-}
-// --- Listen for Real-Time Cart Updates ---
-function listenToCartChanges() {
-    if (!auth.currentUser) return;
-
-    const userRef = doc(db, "users", auth.currentUser.uid);
-
-    unsubscribeCartListener = onSnapshot(userRef, (docSnap) => {
-        if (docSnap.exists()) {
-            const data = docSnap.data();
-            cart = Array.isArray(data.cart) ? data.cart : [];
-            console.log("📦 Cart updated in real time:", cart);
-            renderCartUI();
-        }
-    }, (error) => {
-        console.error("❌ Real-time cart listener error:", error);
-    });
 }
 
 // --- Function to update the cart ---
@@ -490,6 +490,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
