@@ -456,6 +456,7 @@ function renderProducts() {
 });
   container.querySelectorAll('.add-to-cart-btn').forEach(btn => {
   btn.addEventListener('click', function() {
+  const idx = Number(this.dataset.idx);
   const product = { ...sampleProducts[idx] }; // copy base product
   const parent = this.closest('.product');
   product.color = parent.querySelector('select').value;
@@ -501,6 +502,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
