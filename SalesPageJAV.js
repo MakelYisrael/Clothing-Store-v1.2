@@ -449,8 +449,12 @@ function renderProducts() {
 });
     container.querySelectorAll('.add-to-cart-btn').forEach(btn => {
   btn.addEventListener('click', function() {
-    addToCart(this.dataset.name, this);
-  });
+  const product = { ...sampleProducts[idx] }; // copy base product
+  const parent = this.closest('.product');
+  product.color = parent.querySelector('select').value;
+  product.quantity = parseInt(parent.querySelector('input').value, 10);
+  addToCart(product);
+});
 });
 }
 document.getElementById('goToCheckoutBtn').addEventListener('click', goToCheckout);
@@ -490,6 +494,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
