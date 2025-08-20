@@ -209,16 +209,36 @@ function updateCart(newCart) {
 }
 // Render cart to page
 function renderCartUI() {
-    const cartContainer = document.getElementById("cart-items");
-    if (!cartContainer) return;
+  const cartContainer = document.getElementById("cartItems");
+  cartContainer.innerHTML = ""; // Clear old items
 
-    cartContainer.innerHTML = cart.map((item, index) => `
-        <li>
-            ${item.name} - $${item.price}
-            <button onclick="removeFromCart(${index})">Remove</button>
-        </li>
-    `).join("");
+  if (cart.length === 0) {
+    cartContainer.innerHTML = "<p>🛒 Your cart is empty.</p>";
+    return;
+  }
+
+  cart.forEach((item, index) => {
+    const itemDiv = document.createElement("div");
+    itemDiv.classList.add("cartItems");
+
+    itemDiv.innerHTML = `
+      <span>${item.name} (${item.color}) x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}</span>
+      <button class="remove-btn" data-index="${index}">Remove</button>
+    `;
+
+    cartContainer.appendChild(itemDiv);
+  });
+    
+ document.querySelectorAll(".remove-btn").forEach(btn => {
+    btn.addEventListener("click", function() {
+      const idx = parseInt(this.dataset.index, 10);
+      cart.splice(idx, 1);  // remove from cart array
+      renderCartUI();       // re-render
+      saveCartToFirestore();
+    });
+  });
 }
+    
 // Load cart from Firestore
 async function loadCartFromFirestore() {
     if (!auth.currentUser) return;
@@ -455,15 +475,15 @@ function renderProducts() {
   });
 });
   container.querySelectorAll('.add-to-cart-btn').forEach((btn, idx) => {
-  btn.addEventListener('click', function() {
-  //const idx = Number(this.dataset.idx);
-  const product = { ...sampleProducts[idx] }; // copy base product
-  const parent = this.closest('.product');
-  product.color = parent.querySelector('select').value;
-  product.quantity = parseInt(parent.querySelector('input').value, 10) || 1;
-  addToCart(product);
+      btn.addEventListener('click', function() {
+      //const idx = Number(this.dataset.idx);
+      const product = { ...sampleProducts[idx] }; // copy base product
+      const parent = this.closest('.product');
+      product.color = parent.querySelector('select').value;
+      product.quantity = parseInt(parent.querySelector('input').value, 10) || 1;
+      addToCart(product);
+      });
   });
-});
 }
 document.getElementById('goToCheckoutBtn').addEventListener('click', goToCheckout);
 document.getElementById('closeCartBtn').addEventListener('click', closeCart);
@@ -502,6 +522,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
