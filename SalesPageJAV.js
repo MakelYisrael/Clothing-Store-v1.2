@@ -70,7 +70,7 @@ function signIn() {
 
 // --- Auth State Change ---
 onAuthStateChanged(auth, (user) => {
-    stopListeningToCart(); // Stop old listener
+    //stopListeningToCart(); // Stop old listener
 
     if (user) {
         console.log(`✅ Logged in as ${user.email}`);
@@ -491,6 +491,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
