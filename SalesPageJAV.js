@@ -170,12 +170,19 @@ function filterProducts() {
 }
 document.getElementById('searchBar').addEventListener('input', filterProducts);
 
-// --- Cart Modification ---
+// Add item to cart
 function addToCart(item) {
+  // If the same product+color exists, increase quantity instead of duplicating
+  const existing = cart.find(p => p.name === item.name && p.color === item.color);
+  if (existing) {
+    existing.quantity += item.quantity;
+  } else {
     cart.push(item);
-    renderCartUI();
-    saveCartToFirestore(); // Saves and instantly syncs
+  }
+  renderCartUI();
+  saveCartToFirestore();
 }
+
 function removeFromCart(index) {
     cart.splice(index, 1);
     renderCartUI();
@@ -447,12 +454,12 @@ function renderProducts() {
     showEditProductPage(idx);
   });
 });
-    container.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+    container.querySelectorAll('.add-to-cart-btn').forEach((btn,idx) => {
   btn.addEventListener('click', function() {
   const product = { ...sampleProducts[idx] }; // copy base product
   const parent = this.closest('.product');
   product.color = parent.querySelector('select').value;
-  product.quantity = parseInt(parent.querySelector('input').value, 10);
+  product.quantity = parseInt(parent.querySelector('input').value, 10) || 1;
   addToCart(product);
 });
 });
@@ -494,6 +501,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
