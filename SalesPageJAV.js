@@ -204,7 +204,7 @@ async function saveCartToFirestore() {
 // --- Function to update the cart ---
 function updateCart(newCart) {
     cart = newCart;
-    renderCart();
+    renderCartUI();
     saveCartToFirestore(); // Auto-save whenever cart changes
 }
 // Render cart to page
@@ -522,6 +522,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
