@@ -454,9 +454,9 @@ function renderProducts() {
     showEditProductPage(idx);
   });
 });
-  container.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+  container.querySelectorAll('.add-to-cart-btn').forEach((btn, idx) => {
   btn.addEventListener('click', function() {
-  const idx = Number(this.dataset.idx);
+  //const idx = Number(this.dataset.idx);
   const product = { ...sampleProducts[idx] }; // copy base product
   const parent = this.closest('.product');
   product.color = parent.querySelector('select').value;
@@ -502,6 +502,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
