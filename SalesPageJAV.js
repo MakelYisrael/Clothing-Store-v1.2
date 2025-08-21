@@ -285,10 +285,10 @@ async function loadHistoryFromFirestore() {
 }
 
 function goToCheckout() {
+    renderCartUI();
     document.querySelector('.products').style.display = 'none';
     document.querySelector('.checkout').style.display = 'none';
     document.getElementById('cartPage').style.display = 'block';
-    renderCartUI();
 
     const cartItems = document.getElementById('cartItems');
     cartItems.innerHTML = '';
@@ -523,6 +523,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
