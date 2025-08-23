@@ -403,7 +403,7 @@ async function deleteProduct(index) {
 // --- Edit Product Functionality ---
 function showEditProductPage(index) {
     editProductIndex = index;
-    const product = sampleProducts[index];
+    const product = products[editProductIndex];
     document.getElementById('editProductName').value = product.name;
     document.getElementById('editProductCategory').value = product.category;
     document.getElementById('editProductImage').value = product.image;
@@ -557,6 +557,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
