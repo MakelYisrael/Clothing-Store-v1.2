@@ -263,6 +263,26 @@ header {
   transform: scale(0.95);
 }
 
+#goToCheckoutBtn {
+  background: #e63946; /* red */
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-size: 0.9rem;
+}
+
+#goToCheckoutBtn:hover {
+  background: #d62828;
+  transform: scale(1.05);
+}
+
+#goToCheckoutBtn:active {
+  transform: scale(0.95);
+}
+
 .login, .add-product-page, .edit-product-page {
     background: #fff;
     max-width: 400px;
@@ -310,6 +330,7 @@ header {
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.10);
 }
+
 
 
 
