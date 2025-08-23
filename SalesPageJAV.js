@@ -182,6 +182,13 @@ function addToCart(item) {
   renderCartUI();
   saveCartToFirestore();
 }
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    renderCartUI();
+    saveCartToFirestore();
+}
+
 // Render cart to page
 function renderCartUI() {
   const cartContainer = document.getElementById("cartItems");
@@ -212,12 +219,6 @@ function renderCartUI() {
       saveCartToFirestore();
     });
   });
-}
-
-function removeFromCart(index) {
-    cart.splice(index, 1);
-    renderCartUI();
-    saveCartToFirestore();
 }
 
 // --- Function to save cart to Firestore ---
@@ -523,6 +524,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
