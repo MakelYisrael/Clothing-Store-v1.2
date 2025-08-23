@@ -286,12 +286,13 @@ async function loadHistoryFromFirestore() {
 }
 
 function goToCheckout() {
-    renderCartUI();
     document.querySelector('.products').style.display = 'none';
     document.querySelector('.checkout').style.display = 'none';
     document.getElementById('cartPage').style.display = 'block';
-
-    const cartItems = document.getElementById('cartItems');
+    renderCartUI();
+    let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    document.getElementById('cartTotal').textContent = total.toFixed(2);
+    /*const cartItems = document.getElementById('cartItems');
     cartItems.innerHTML = '';
     let total = 0;
 
@@ -302,7 +303,7 @@ function goToCheckout() {
         total += item.price * item.quantity;
     });
 
-    document.getElementById('cartTotal').textContent = total.toFixed(2);
+    document.getElementById('cartTotal').textContent = total.toFixed(2);*/
 }
 document.getElementById('goToCheckoutBtn').addEventListener('click', goToCheckout);
 
@@ -524,6 +525,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
