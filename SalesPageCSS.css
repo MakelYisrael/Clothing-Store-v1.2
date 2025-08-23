@@ -223,6 +223,45 @@ header {
   padding: 1rem;
 }
 
+#completePurchaseBtn {
+  background: #e63946; /* red */
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-size: 0.9rem;
+}
+
+#completePurchaseBtn:hover {
+  background: #d62828;
+  transform: scale(1.05);
+}
+
+#completePurchaseBtn:active {
+  transform: scale(0.95);
+}
+
+#closeCartBtn {
+  background: #e63946; /* red */
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-size: 0.9rem;
+}
+
+#closeCartBtn:hover {
+  background: #d62828;
+  transform: scale(1.05);
+}
+
+#closeCartBtn:active {
+  transform: scale(0.95);
+}
 
 .login, .add-product-page, .edit-product-page {
     background: #fff;
@@ -271,6 +310,7 @@ header {
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.10);
 }
+
 
 
 
