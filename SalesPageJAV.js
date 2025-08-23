@@ -386,7 +386,7 @@ async function addNewProduct() {
 }
 document.getElementById('addNewProductBtn').addEventListener('click', addNewProduct);
 
-function deleteProduct(index) {
+async function deleteProduct(index) {
     if (confirm('Are you sure you want to delete this product?')) {
          const productId = products[index].id;
         try {
@@ -557,6 +557,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
