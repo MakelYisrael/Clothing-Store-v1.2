@@ -26,6 +26,7 @@ let editProductIndex = null;
 let currentUser = null;
 let unsubscribeCartListener = null;
 let stopListeningToCart = null;
+let products = [];
 
 const sampleProducts = [
     { name: 'Classic Shirt', category: 'shirts', image: 'https://steadyclothing.com/cdn/shop/products/ST35613_teal__08619.jpg?v=1715893831&width=1200', price: 19.99 },
@@ -343,6 +344,15 @@ function backToShop() {
 }
 document.getElementById('backToShopBtn').addEventListener('click', backToShop);
 
+async function loadProductsFromFirestore() {
+    products = [];
+    const querySnapshot = await getDocs(collection(db, "products"));
+    querySnapshot.forEach((doc) => {
+        products.push({ id: doc.id, ...doc.data() });
+    });
+    renderProducts();
+}
+
 async function addNewProduct() {
     const name = document.getElementById('newProductName').value.trim();
     const category = document.getElementById('newProductCategory').value;
@@ -531,6 +541,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
