@@ -473,7 +473,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function renderProducts() {
     const container = document.getElementById('productList');
     container.innerHTML = '';
-    sampleProducts.forEach((product, idx) => {
+    products.forEach((product, idx) => {
         const div = document.createElement('div');
         div.className = 'product';
         div.setAttribute('data-category', product.category);
@@ -511,7 +511,7 @@ function renderProducts() {
   container.querySelectorAll('.add-to-cart-btn').forEach((btn, idx) => {
       btn.addEventListener('click', function() {
       //const idx = Number(this.dataset.idx);
-      const product = { ...sampleProducts[idx] }; // copy base product
+      const product = { ...products[idx] }; // copy base product
       const parent = this.closest('.product');
       product.color = parent.querySelector('select').value;
       product.quantity = parseInt(parent.querySelector('input').value, 10) || 1;
@@ -556,6 +556,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
