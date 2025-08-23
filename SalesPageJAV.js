@@ -410,8 +410,9 @@ function showEditProductPage(index) {
     document.querySelector('.filters').style.display = 'none';
 }
 
-function saveEditProduct() {
+async function saveEditProduct() {
     if (editProductIndex === null) return;
+    const product = products[editProductIndex];
     const name = document.getElementById('editProductName').value.trim();
     const category = document.getElementById('editProductCategory').value;
     const image = document.getElementById('editProductImage').value.trim() || 'https://via.placeholder.com/200x150?text=No+Image';
@@ -423,8 +424,15 @@ function saveEditProduct() {
         return;
     } 
 
-    sampleProducts[editProductIndex] = { name, category, image, price };
-    editProductIndex = null;
+    try {
+        await setDoc(doc(db, "products", product.id), { name, category, image, price }, { merge: true });
+        alert('Product updated!');
+        editProductIndex = null;
+        document.getElementById('editProductPage').style.display = 'none';
+        await loadProductsFromFirestore();
+    } catch (e) {
+        alert("Error updating product: " + e.message);
+    }
     document.getElementById('editProductPage').style.display = 'none';
     document.querySelector('.products').style.display = 'grid';
     document.querySelector('.checkout').style.display = 'block';
@@ -541,6 +549,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
