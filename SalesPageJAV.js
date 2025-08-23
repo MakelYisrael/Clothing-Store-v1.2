@@ -182,31 +182,6 @@ function addToCart(item) {
   renderCartUI();
   saveCartToFirestore();
 }
-
-function removeFromCart(index) {
-    cart.splice(index, 1);
-    renderCartUI();
-    saveCartToFirestore();
-}
-
-// --- Function to save cart to Firestore ---
-async function saveCartToFirestore() {
-    if (!auth.currentUser) return; // Skip if not logged in
-    try {
-        const userRef = doc(db, "users", auth.currentUser.uid);
-        await setDoc(userRef, { cart }, { merge: true });
-        console.log("🛒 Cart saved successfully to Firestore!");
-    } catch (error) {
-        console.error("❌ Error saving cart:", error);
-    }
-}
-
-// --- Function to update the cart ---
-function updateCart(newCart) {
-    cart = newCart;
-    renderCartUI();
-    saveCartToFirestore(); // Auto-save whenever cart changes
-}
 // Render cart to page
 function renderCartUI() {
   const cartContainer = document.getElementById("cartItems");
@@ -237,6 +212,31 @@ function renderCartUI() {
       saveCartToFirestore();
     });
   });
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    renderCartUI();
+    saveCartToFirestore();
+}
+
+// --- Function to save cart to Firestore ---
+async function saveCartToFirestore() {
+    if (!auth.currentUser) return; // Skip if not logged in
+    try {
+        const userRef = doc(db, "users", auth.currentUser.uid);
+        await setDoc(userRef, { cart }, { merge: true });
+        console.log("🛒 Cart saved successfully to Firestore!");
+    } catch (error) {
+        console.error("❌ Error saving cart:", error);
+    }
+}
+
+// --- Function to update the cart ---
+function updateCart(newCart) {
+    cart = newCart;
+    renderCartUI();
+    saveCartToFirestore(); // Auto-save whenever cart changes
 }
     
 // Load cart from Firestore
@@ -523,6 +523,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
