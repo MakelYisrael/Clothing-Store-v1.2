@@ -388,10 +388,17 @@ document.getElementById('addNewProductBtn').addEventListener('click', addNewProd
 
 function deleteProduct(index) {
     if (confirm('Are you sure you want to delete this product?')) {
-        sampleProducts.splice(index, 1);
+         const productId = products[index].id;
+        try {
+            await deleteDoc(doc(db, "products", productId));
+            alert('Product deleted!');
+            await loadProductsFromFirestore();
+        } catch (e) {
+            alert("Error deleting product: " + e.message);
+        }
+    }
         renderProducts();
     }
-}
 
 // --- Edit Product Functionality ---
 function showEditProductPage(index) {
@@ -549,6 +556,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
