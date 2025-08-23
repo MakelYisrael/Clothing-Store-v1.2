@@ -343,7 +343,7 @@ function backToShop() {
 }
 document.getElementById('backToShopBtn').addEventListener('click', backToShop);
 
-function addNewProduct() {
+async function addNewProduct() {
     const name = document.getElementById('newProductName').value.trim();
     const category = document.getElementById('newProductCategory').value;
     const image = document.getElementById('newProductImage').value.trim() || 'https://via.placeholder.com/200x150?text=New+Product';
@@ -356,8 +356,14 @@ function addNewProduct() {
 
     // Add to sampleProducts and re-render
     const newProduct = { name, category, image, price };
-    sampleProducts.push(newProduct);
-
+     try {
+        await addDoc(collection(db, "products"), newProduct); // FIRESTORE SAVE!
+        alert('Product added!');
+        backToShop();
+        await loadProductsFromFirestore();
+    } catch (e) {
+        alert("Error adding product: " + e.message);
+    }
     // Clear form
     document.getElementById('newProductName').value = '';
     document.getElementById('newProductImage').value = '';
@@ -525,6 +531,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
