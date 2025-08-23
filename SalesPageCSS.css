@@ -284,18 +284,17 @@ header {
 }
 
 #addProductNavBtn {
-  background: #e63946; /* red */
-  color: #fff;
+  margin-left: auto;
+  background-color: #002868;
+  color: white;
   border: none;
-  border-radius: 6px;
-  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  font-size: 0.9rem;
 }
 
 #addProductNavBtn:hover {
-  background: #d62828;
+  background: #0373fc;
   transform: scale(1.05);
 }
 
@@ -350,6 +349,7 @@ header {
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.10);
 }
+
 
 
 
