@@ -183,11 +183,11 @@ function addToCart(item) {
   saveCartToFirestore();
 }
 
-/*function removeFromCart(index) {
+function removeFromCart(index) {
     cart.splice(index, 1);
     renderCartUI();
     saveCartToFirestore();
-}*/
+}
 
 // --- Function to save cart to Firestore ---
 async function saveCartToFirestore() {
@@ -523,6 +523,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
