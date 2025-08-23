@@ -320,7 +320,7 @@ async function completePurchase() {
    };
    await addOrderToHistory(order);
    cart = [];
-   renderCartUI();
+   //renderCartUI();
    await saveCartToFirestore(cart);
 }
 
@@ -523,6 +523,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
