@@ -532,7 +532,8 @@ function logout() {
     });
 }
 
-window.onload = () => {
+window.onload = async () => {
+    await loadProductsFromFirestore();
     renderProducts();
     renderCategoryDropdown()
 
@@ -556,6 +557,7 @@ window.onload = () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
