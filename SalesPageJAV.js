@@ -169,7 +169,7 @@ function filterProducts() {
         p.style.display = title.includes(search) ? 'block' : 'none';
     });
 }
-document.getElementById('searchBar').addEventListener('input', filterProducts);
+document.getElementById('searchBar').addEventListener('oninput', filterProducts);
 
 // Add item to cart
 function addToCart(item) {
@@ -557,6 +557,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
