@@ -358,39 +358,38 @@ document.getElementById('backToShopBtn').addEventListener('click', backToShop);
 async function addNewProduct() {
     const name = document.getElementById('newProductName').value.trim();
     const category = document.getElementById('newProductCategory').value;
-    //const image = document.getElementById('newProductImage').value.trim() || 'https://via.placeholder.com/200x150?text=New+Product';
+    const image = document.getElementById('newProductImage').value.trim() || 'https://via.placeholder.com/200x150?text=New+Product';
     const priceInput = document.getElementById('newProductPrice').value;
     const price = priceInput ? parseFloat(priceInput) : 19.99;
-    const imageFileInput = document.getElementById('newProductImageFile');
-    const imageFile = imageFileInput.files[0];
+    //const imageFileInput = document.getElementById('newProductImageFile');
+    //const imageFile = imageFileInput.files[0];
     if (!name) {
         alert('Please enter a product name.');
         return;
     }
-    let imageUrl = 'https://via.placeholder.com/200x150?text=New+Product';
+    /*let imageUrl = 'https://via.placeholder.com/200x150?text=New+Product';
      if (imageFile) {
         // Upload image to Firebase Storage
         const storageRef = ref(storage, `productImages/${Date.now()}_${imageFile.name}`);
         await uploadBytes(storageRef, imageFile);
         imageUrl = await getDownloadURL(storageRef);
-    }
-
+    }*/
     // Add to sampleProducts and re-render
     const newProduct = { name, category, image: imageUrl, price };
      try {
         await addDoc(collection(db, "products"), newProduct); // FIRESTORE SAVE!
         alert('Product added!');
-        backToShop();
+        //backToShop();
+        //await loadProductsFromFirestore();
+        document.getElementById('newProductName').value = '';
+        document.getElementById('newProductImage').value = '';
+        document.getElementById('newProductCategory').selectedIndex = 0;
+        document.getElementById('newProductPrice').value = '';
         await loadProductsFromFirestore();
     } catch (e) {
         alert("Error adding product: " + e.message);
     }
     // Clear form
-    document.getElementById('newProductName').value = '';
-    document.getElementById('newProductImage').value = '';
-    document.getElementById('newProductCategory').selectedIndex = 0;
-    document.getElementById('newProductPrice').value = '';
-
     alert('Product added!');
     backToShop();
     renderProducts();
@@ -568,6 +567,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
