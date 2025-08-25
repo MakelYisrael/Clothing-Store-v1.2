@@ -216,6 +216,7 @@ function renderCartUI() {
     itemDiv.classList.add("cartItems");
 
     itemDiv.innerHTML = `
+      <img src="${item.image}" alt="${item.name}" class="cart-item-image" />
       <span>${item.name} (${item.color}) x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}</span>
       <button class="remove-btn" data-index="${index}">Remove</button>
     `;
@@ -567,6 +568,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
