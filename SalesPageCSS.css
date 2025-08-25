@@ -167,6 +167,14 @@ header {
     .cart button {
         margin: 0.5rem 0.2rem;
     }
+.cart-item-image {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  margin-right: 8px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
 
 /* Cart container */
 #cartItems {
@@ -349,6 +357,7 @@ header {
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.10);
 }
+
 
 
 
