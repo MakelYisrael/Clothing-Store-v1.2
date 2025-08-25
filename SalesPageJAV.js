@@ -368,14 +368,14 @@ async function addNewProduct() {
         return;
     }
     /*let imageUrl = 'https://via.placeholder.com/200x150?text=New+Product';
-     if (imageFile) {
+    if (imageFile) {
         // Upload image to Firebase Storage
         const storageRef = ref(storage, `productImages/${Date.now()}_${imageFile.name}`);
         await uploadBytes(storageRef, imageFile);
         imageUrl = await getDownloadURL(storageRef);
     }*/
     // Add to sampleProducts and re-render
-    const newProduct = { name, category, image: imageUrl, price };
+    const newProduct = { name, category, image, price };
      try {
         await addDoc(collection(db, "products"), newProduct); // FIRESTORE SAVE!
         alert('Product added!');
@@ -567,6 +567,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
