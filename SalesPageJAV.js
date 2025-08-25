@@ -125,6 +125,15 @@ function showLoginUI() {
 document.getElementById('signInBtn').addEventListener('click', signIn);
 document.getElementById('logoutBtn').addEventListener('click', logout);
 
+async function loadProductsFromFirestore() {
+    products = [];
+    const querySnapshot = await getDocs(collection(db, "products"));
+    querySnapshot.forEach((doc) => {
+        products.push({ id: doc.id, ...doc.data() });
+    });
+    renderProducts();
+}
+
 function filterCategory(category) {
     const products = document.querySelectorAll('.product');
     products.forEach(p => {
@@ -344,15 +353,6 @@ function backToShop() {
 }
 document.getElementById('backToShopBtn').addEventListener('click', backToShop);
 
-async function loadProductsFromFirestore() {
-    products = [];
-    const querySnapshot = await getDocs(collection(db, "products"));
-    querySnapshot.forEach((doc) => {
-        products.push({ id: doc.id, ...doc.data() });
-    });
-    renderProducts();
-}
-
 async function addNewProduct() {
     const name = document.getElementById('newProductName').value.trim();
     const category = document.getElementById('newProductCategory').value;
@@ -557,6 +557,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
