@@ -534,7 +534,7 @@ function logout() {
 
 window.onload = async () => {
     await loadProductsFromFirestore();
-    renderProducts();
+    //renderProducts();
     renderCategoryDropdown()
 
     if (!isLoggedIn) {
@@ -557,6 +557,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
