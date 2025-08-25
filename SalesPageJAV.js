@@ -3,6 +3,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebas
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 import { getFirestore, onSnapshot, doc, setDoc, getDoc, getDocs, updateDoc, deleteDoc, arrayUnion, addDoc, collection } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-storage.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAkONo3PzKXEyLOYhPmavD6A9bYkali9yw",
@@ -18,6 +19,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
+const storage = getStorage(app);
 
 // script.js
 let isLoggedIn = false;
@@ -356,16 +358,25 @@ document.getElementById('backToShopBtn').addEventListener('click', backToShop);
 async function addNewProduct() {
     const name = document.getElementById('newProductName').value.trim();
     const category = document.getElementById('newProductCategory').value;
-    const image = document.getElementById('newProductImage').value.trim() || 'https://via.placeholder.com/200x150?text=New+Product';
+    //const image = document.getElementById('newProductImage').value.trim() || 'https://via.placeholder.com/200x150?text=New+Product';
     const priceInput = document.getElementById('newProductPrice').value;
     const price = priceInput ? parseFloat(priceInput) : 19.99;
+    const imageFileInput = document.getElementById('newProductImageFile');
+    const imageFile = imageFileInput.files[0];
     if (!name) {
         alert('Please enter a product name.');
         return;
     }
+    let imageUrl = 'https://via.placeholder.com/200x150?text=New+Product';
+     if (imageFile) {
+        // Upload image to Firebase Storage
+        const storageRef = ref(storage, `productImages/${Date.now()}_${imageFile.name}`);
+        await uploadBytes(storageRef, imageFile);
+        imageUrl = await getDownloadURL(storageRef);
+    }
 
     // Add to sampleProducts and re-render
-    const newProduct = { name, category, image, price };
+    const newProduct = { name, category, image: imageUrl, price };
      try {
         await addDoc(collection(db, "products"), newProduct); // FIRESTORE SAVE!
         alert('Product added!');
@@ -557,6 +568,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
