@@ -26,6 +26,7 @@ let isLoggedIn = false;
 let cart = [];
 let editProductIndex = null;
 let currentUser = null;
+let currentUserRole = null;
 let unsubscribeCartListener = null;
 let stopListeningToCart = null;
 let products = [];
@@ -88,13 +89,33 @@ function listenToCartChanges() {
     });
 }
 
+function updateUIByRole(role) {
+  // Hide all by default
+  document.documentSelectorAll('.edit-btn, delete-btn, add-to-cart-btn').forEach(btn => btn.style.display = 'none');
+  document.getElementById("addProductNavBtn").style.display = "none";
+  document.getElementById("goToCheckoutBtn").style.display = "none";
+
+  if (role === "seller") {
+    // Show seller buttons
+     document.querySelectorAll('.edit-btn, .delete-btn').forEach(btn => btn.style.display = 'inline-block');
+    document.getElementById("addProductNavBtn").style.display = "inline-block";
+  } else if (role === "buyer") {
+    // Show buyer buttons
+    document.querySelectorAll('.add-to-cart-btn').forEach(btn => btn.style.display = 'inline-block');
+    document.getElementById("goToCheckoutBtn").style.display = "inline-block";
+  }
+}
+
 // --- Auth State Change ---
-onAuthStateChanged(auth, (user) => {
+async onAuthStateChanged(auth, (user) => {
     //stopListeningToCart(); // Stop old listener
     if (user) {
         console.log(`✅ Logged in as ${user.email}`);
         loadCartFromFirestore();
         listenToCartChanges(); // Start new real-time listener
+        const uid = user.uid;
+        const role = await getUserRole(user.uid); //enables role to show and hide features
+        updateUIByRole(role);
     } else {
         console.log("🚪 Logged out, clearing cart.");
         cart = [];
@@ -126,6 +147,19 @@ function showLoginUI() {
 
 document.getElementById('signInBtn').addEventListener('click', signIn);
 document.getElementById('logoutBtn').addEventListener('click', logout);
+
+async function getUserRole(uid) {
+  const userDocRef = doc(db, "users", uid);
+  const userDoc = await getDoc(userDocRef);
+  if (userDoc.exists()) {
+    const userData = userDoc.data();
+    return userData.role; // "buyer" or "seller"
+  } else {
+    // Handle user not found
+    alert("User is not found");
+    return null;
+  }
+}
 
 async function loadProductsFromFirestore() {
     products = [];
@@ -529,6 +563,7 @@ function renderProducts() {
       addToCart(product);
       });
   });
+    updateUIByRole(currentUserRole);
 }
 document.getElementById('goToCheckoutBtn').addEventListener('click', goToCheckout);
 document.getElementById('closeCartBtn').addEventListener('click', closeCart);
@@ -568,6 +603,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
