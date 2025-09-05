@@ -107,7 +107,7 @@ function updateUIByRole(role) {
 }
 
 // --- Auth State Change ---
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
     //stopListeningToCart(); // Stop old listener
     if (user) {
         console.log(`✅ Logged in as ${user.email}`);
@@ -603,6 +603,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
