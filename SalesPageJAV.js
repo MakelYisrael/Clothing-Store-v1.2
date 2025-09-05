@@ -91,7 +91,7 @@ function listenToCartChanges() {
 
 function updateUIByRole(role) {
   // Hide all by default
-  document.documentSelectorAll('.edit-btn, delete-btn, add-to-cart-btn').forEach(btn => btn.style.display = 'none');
+  document.querySelectorAll('.edit-btn, delete-btn, add-to-cart-btn').forEach(btn => btn.style.display = 'none');
   document.getElementById("addProductNavBtn").style.display = "none";
   document.getElementById("goToCheckoutBtn").style.display = "none";
 
@@ -603,6 +603,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
