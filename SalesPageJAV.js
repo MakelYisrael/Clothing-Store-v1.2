@@ -523,7 +523,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Renders all products from sampleProducts
-function renderProducts() {
+function renderProducts(selectedColor = 'all') {
     const container = document.getElementById('productList');
     container.innerHTML = '';
     products.forEach((product, idx) => {
@@ -634,6 +634,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
