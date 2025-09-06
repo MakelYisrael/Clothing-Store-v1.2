@@ -106,6 +106,20 @@ function updateUIByRole(role) {
   }
 }
 
+async function getUserRole(uid) {
+  const userDocRef = doc(db, "users", uid);
+  const userDoc = await getDoc(userDocRef);
+  if (userDoc.exists()) {
+    const userData = userDoc.data();
+    console.log(`✅ Logged in as ${userData.role}`);
+    return userData.role; // "buyer" or "seller"
+  } else {
+    // Handle user not found
+    alert("User is not found");
+    return null;
+  }
+}
+
 // --- Auth State Change ---
 onAuthStateChanged(auth, async (user) => {
     //stopListeningToCart(); // Stop old listener
@@ -114,8 +128,7 @@ onAuthStateChanged(auth, async (user) => {
         loadCartFromFirestore();
         listenToCartChanges(); // Start new real-time listener
         const uid = user.uid;
-        const role = await getUserRole(user.role); //enables role to show and hide features
-        console.log(`✅ Logged in as ${user.role}`);
+        const role = await getUserRole(user.uid); //enables role to show and hide features
         updateUIByRole(role);
     } else {
         console.log("🚪 Logged out, clearing cart.");
@@ -148,20 +161,6 @@ function showLoginUI() {
 
 document.getElementById('signInBtn').addEventListener('click', signIn);
 document.getElementById('logoutBtn').addEventListener('click', logout);
-
-async function getUserRole(uid) {
-  const userDocRef = doc(db, "users", uid);
-  const userDoc = await getDoc(userDocRef);
-  if (userDoc.exists()) {
-    const userData = userDoc.data();
-    console.log(`✅ Logged in as ${userData.role}`);
-    return userData.role; // "buyer" or "seller"
-  } else {
-    // Handle user not found
-    alert("User is not found");
-    return null;
-  }
-}
 
 async function loadProductsFromFirestore() {
     products = [];
@@ -605,6 +604,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
