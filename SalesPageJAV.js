@@ -543,11 +543,12 @@ function renderProducts(selectedColor = 'all') {
             <p class="product-price">$${product.price.toFixed(2)}</p>
         `;
         if (currentUserRole === "seller") {
-            let colorOptions = '';
+            let colorOptions = `<option value="all">All</option>`; // 👈 add All first;
             for(const color in product.stock){
                 colorOptions += `<option value="${color}">${color}</option>`;
             }
             const firstColor = Object.keys(product.stock)[0] || 'Red';
+            const totalStock = Object.values(product.stock).reduce((sum, val) => sum + (val || 0), 0);
             productHtml += `
             <label for="sellerColorSelect${idx}">Color:</label>
             <select class="seller-color-select" data-idx="${idx}" id="sellerColorSelect${idx}">
@@ -604,7 +605,17 @@ function renderProducts(selectedColor = 'all') {
         select.addEventListener('change', function() {
             const idx = this.getAttribute('data-idx');
             const selectedColor = this.value;
-            const stock = products[idx].stock && products[idx].stock[selectedColor] !== undefined ? products[idx].stock[selectedColor] : 0;
+            let stock;
+            if (selectedColor === "all"){
+                stock =  Object.values(products[idx].stock)
+                 .reduce((sum, val) => sum + (val || 0), 0);
+            } else {
+                stock = products[idx].stock && products[idx].stock[selectedColor] !== undefined
+                ? products[idx].stock[selectedColor]
+                : 0;
+            }
+            //const selectedColor = this.value;
+            //const stock = products[idx].stock && products[idx].stock[selectedColor] !== undefined ? products[idx].stock[selectedColor] : 0;
             document.getElementById('stockDisplay' + idx).textContent = `${stock} in stock`;
         });
     });
@@ -648,6 +659,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
