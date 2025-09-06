@@ -131,6 +131,7 @@ onAuthStateChanged(auth, async (user) => {
         const role = await getUserRole(user.uid); //enables role to show and hide features
         currentUserRole = role
         updateUIByRole(currentUserRole);
+        renderProducts('all');
     } else {
         console.log("🚪 Logged out, clearing cart.");
         cart = [];
@@ -533,20 +534,20 @@ function renderProducts() {
             <img src="${product.image}" alt="${product.name}" />
             <h3>${product.name}</h3>
             <p class="product-price">$${product.price.toFixed(2)}</p>
-            `;
-        // Seller view: show stock by color
-    
+        `;
         if (currentUserRole === "seller") {
             let stockHtml = `<ul>`;
-            // If stock is not defined, skip
-            if (product.stock) {
+            if(product.stock){
                 for (const color in product.stock) {
-                    stockHtml += `<li>${color}: ${product.stock[color]} in stock</li>`;
+                    if (selectedColor === "all" || color === selectedColor) {
+                        stockHtml += `<li>${color}: ${product.stock[color]} in stock</li>`;
+                    }
                 }
-             }
+            }
             stockHtml += `</ul>`;
             productHtml += stockHtml;
-        } else {
+        }
+        else {
             productHtml += `
             <select>
                 <option>Red</option>
@@ -591,6 +592,10 @@ function renderProducts() {
   });
     updateUIByRole(currentUserRole);
 }
+document.getElementById('stockColorFilter').addEventListener('change', function() {
+    // Pass the selected color to your render function
+    renderProducts(this.value); // assuming renderProducts handles color filtering for sellers
+});
 document.getElementById('goToCheckoutBtn').addEventListener('click', goToCheckout);
 document.getElementById('closeCartBtn').addEventListener('click', closeCart);
 document.getElementById('completePurchaseBtn').addEventListener('click', completePurchase);
@@ -606,7 +611,7 @@ function logout() {
 
 window.onload = async () => {
     await loadProductsFromFirestore();
-    //renderProducts();
+    renderProducts('all');
     renderCategoryDropdown()
 
     if (!isLoggedIn) {
@@ -629,6 +634,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
