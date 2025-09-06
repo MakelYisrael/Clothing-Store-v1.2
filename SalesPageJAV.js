@@ -492,7 +492,7 @@ async function saveEditProduct() {
     } 
 
     try {
-        await setDoc(doc(db, "products", product.id), { name, category, image, price }, { merge: true });
+        await setDoc(doc(db, "products", product.id), { name, category, image, price, stock }, { merge: true });
         alert('Product updated!');
         editProductIndex = null;
         document.getElementById('editProductPage').style.display = 'none';
@@ -641,6 +641,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
