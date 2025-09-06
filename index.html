@@ -98,6 +98,18 @@
                     </select><br /><br />
                     <input type="text" id="editProductImage" placeholder="Image URL" /><br /><br />
                     <input type="number" id="editProductPrice" placeholder="Price (e.g. 19.99)" min="0" step="0.01" /><br /><br />
+                    <div>
+                       <label>Stock (Red):</label>
+                       <input type="number" id="stockRed" min="0" value="0" />
+                   </div>
+                   <div>
+                       <label>Stock (Blue):</label>
+                       <input type="number" id="stockBlue" min="0" value="0" />
+                   </div>
+                   <div>
+                       <label>Stock (Black):</label>
+                       <input type="number" id="stockBlack" min="0" value="0" />
+                   </div>
                     <img id="editProductPreview" src="" alt="Preview" style="max-width:200px;display:none;" /><br /><br />
                     <button id="saveEditProductBtn">Save Changes</button>
                     <button id="cancelEditProductBtn">Cancel</button>
