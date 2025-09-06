@@ -91,7 +91,7 @@ function listenToCartChanges() {
 
 function updateUIByRole(role) {
   // Hide all by default
-  document.querySelectorAll('.edit-btn, delete-btn, add-to-cart-btn').forEach(btn => btn.style.display = 'none');
+  document.querySelectorAll('.edit-btn, .delete-btn, .add-to-cart-btn').forEach(btn => btn.style.display = 'none');
   document.getElementById("addProductNavBtn").style.display = "none";
   document.getElementById("goToCheckoutBtn").style.display = "none";
 
@@ -129,7 +129,8 @@ onAuthStateChanged(auth, async (user) => {
         listenToCartChanges(); // Start new real-time listener
         const uid = user.uid;
         const role = await getUserRole(user.uid); //enables role to show and hide features
-        updateUIByRole(role);
+        currentUserRole = role
+        updateUIByRole(currentUserRole);
     } else {
         console.log("🚪 Logged out, clearing cart.");
         cart = [];
@@ -604,6 +605,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
