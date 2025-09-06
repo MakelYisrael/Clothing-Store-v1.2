@@ -543,14 +543,21 @@ function renderProducts(selectedColor = 'all') {
             <p class="product-price">$${product.price.toFixed(2)}</p>
         `;
         if (currentUserRole === "seller") {
-            let stockHtml = `<ul>`;
-            if(product.stock){
-                for (const color in product.stock) {
-                    if (selectedColor === "all" || color === selectedColor) {
-                        stockHtml += `<li>${color}: ${product.stock[color]} in stock</li>`;
-                    }
-                }
+            let colorOptions = '';
+            for(const color in product.stock){
+                colorOptions += 1<option value="${color}">${color}</option>;
             }
+            const firstColor = Object.keys(product.stock)[0] || 'Red';
+            productHtml += `
+            <label for="sellerColorSelect${idx}">Color:</label>
+            <select class="seller-color-select" data-idx="${idx}" id="sellerColorSelect${idx}">
+            ${colorOptions}
+            </select>
+            <span id="stockDisplay${idx}" class="stock-display">
+            ${product.stock && product.stock[firstColor] !== undefined ? product.stock[firstColor] : 0} in stock
+            </span>
+            `;
+        }
             stockHtml += `</ul>`;
             productHtml += stockHtml;
         }
@@ -599,9 +606,15 @@ function renderProducts(selectedColor = 'all') {
   });
     updateUIByRole(currentUserRole);
 }
-document.getElementById('stockColorFilter').addEventListener('change', function() {
-    // Pass the selected color to your render function
-    renderProducts(this.value); // assuming renderProducts handles color filtering for sellers
+container.querySelectorAll('.seller-color-select').forEach(select => {
+    select.addEventListener('change', function() {
+        const idx = this.getAttribute('data-idx');
+        const selectedColor = this.value;
+        const stock = products[idx].stock && products[idx].stock[selectedColor] !== undefined
+            ? products[idx].stock[selectedColor]
+            : 0;
+        document.getElementById('stockDisplay' + idx).textContent = `${stock} in stock`;
+    });
 });
 document.getElementById('goToCheckoutBtn').addEventListener('click', goToCheckout);
 document.getElementById('closeCartBtn').addEventListener('click', closeCart);
@@ -641,6 +654,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
