@@ -461,6 +461,7 @@ function showEditProductPage(index) {
     document.getElementById('editProductCategory').value = product.category;
     document.getElementById('editProductImage').value = product.image;
     document.getElementById('editProductPrice').value = product.price;
+    document.getElementById('stockColorFilter').value = product.stock;
     const preview = document.getElementById('editProductPreview');
     preview.src = product.image;
     preview.style.display = 'block';
@@ -478,7 +479,7 @@ async function saveEditProduct() {
     const image = document.getElementById('editProductImage').value.trim() || 'https://via.placeholder.com/200x150?text=No+Image';
     const priceInput = document.getElementById('editProductPrice').value;
     const price = priceInput ? parseFloat(priceInput) : 19.99;
-
+    const stock = document.getElementById('stockColorFilter').value = product.stock;
     if (!name) {
         alert('Please enter a product name.');
         return;
@@ -634,6 +635,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
