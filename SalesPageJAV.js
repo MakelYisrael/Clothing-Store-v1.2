@@ -461,9 +461,9 @@ function showEditProductPage(index) {
     document.getElementById('editProductCategory').value = product.category;
     document.getElementById('editProductImage').value = product.image;
     document.getElementById('editProductPrice').value = product.price;
-    document.getElementById('editStockRed').value = product.stock?.Red ?? 0;
-    document.getElementById('editStockBlue').value = product.stock?.Blue ?? 0;
-    document.getElementById('editStockBlack').value = product.stock?.Black ?? 0;    
+    document.getElementById('editstockRed').value = product.stock?.Red ?? 0;
+    document.getElementById('editstockBlue').value = product.stock?.Blue ?? 0;
+    document.getElementById('editstockBlack').value = product.stock?.Black ?? 0;    
     const preview = document.getElementById('editProductPreview');
     preview.src = product.image;
     preview.style.display = 'block';
@@ -482,9 +482,9 @@ async function saveEditProduct() {
     const priceInput = document.getElementById('editProductPrice').value;
     const price = priceInput ? parseFloat(priceInput) : 19.99;
     const stock = {
-        Red: parseInt(document.getElementById('editStockRed').value, 10) || 0,
-        Blue: parseInt(document.getElementById('editStockBlue').value, 10) || 0,
-        Black: parseInt(document.getElementById('editStockBlack').value, 10) || 0
+        Red: parseInt(document.getElementById('editstockRed').value, 10) || 0,
+        Blue: parseInt(document.getElementById('editstockBlue').value, 10) || 0,
+        Black: parseInt(document.getElementById('editstockBlack').value, 10) || 0
     }
     if (!name) {
         alert('Please enter a product name.');
@@ -641,6 +641,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
