@@ -114,8 +114,8 @@ onAuthStateChanged(auth, async (user) => {
         loadCartFromFirestore();
         listenToCartChanges(); // Start new real-time listener
         const uid = user.uid;
-        const role = await getUserRole(user.uid); //enables role to show and hide features
-        console.log(`✅ Logged in as ${user.uid}`);
+        const role = await getUserRole(user.role); //enables role to show and hide features
+        console.log(`✅ Logged in as ${user.role}`);
         updateUIByRole(role);
     } else {
         console.log("🚪 Logged out, clearing cart.");
@@ -605,6 +605,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
