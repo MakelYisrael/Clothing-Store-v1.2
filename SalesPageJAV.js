@@ -558,9 +558,9 @@ function renderProducts(selectedColor = 'all') {
             </span>
             `;
         }
-            stockHtml += `</ul>`;
-            productHtml += stockHtml;
-        }
+            //stockHtml += `</ul>`;
+            //productHtml += stockHtml;
+    }
         else {
             productHtml += `
             <select>
@@ -654,6 +654,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
