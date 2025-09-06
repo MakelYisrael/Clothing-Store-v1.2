@@ -154,6 +154,7 @@ async function getUserRole(uid) {
   const userDoc = await getDoc(userDocRef);
   if (userDoc.exists()) {
     const userData = userDoc.data();
+    console.log(`✅ Logged in as ${userData.role}`);
     return userData.role; // "buyer" or "seller"
   } else {
     // Handle user not found
@@ -604,6 +605,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
