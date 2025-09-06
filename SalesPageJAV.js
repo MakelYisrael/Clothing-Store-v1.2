@@ -398,6 +398,11 @@ async function addNewProduct() {
     const image = document.getElementById('newProductImage').value.trim() || 'https://via.placeholder.com/200x150?text=New+Product';
     const priceInput = document.getElementById('newProductPrice').value;
     const price = priceInput ? parseFloat(priceInput) : 19.99;
+    const stock = {
+        "Red": parseInt(document.getElementById('stockRed').value, 10) || 0,
+        "Blue": parseInt(document.getElementById('stockBlue').value, 10) || 0,
+        "Black": parseInt(document.getElementById('stockBlack').value, 10) || 0
+    };
     //const imageFileInput = document.getElementById('newProductImageFile');
     //const imageFile = imageFileInput.files[0];
     if (!name) {
@@ -412,7 +417,7 @@ async function addNewProduct() {
         imageUrl = await getDownloadURL(storageRef);
     }*/
     // Add to sampleProducts and re-render
-    const newProduct = { name, category, image, price };
+    const newProduct = { name, category, image, price, stock };
      try {
         await addDoc(collection(db, "products"), newProduct); // FIRESTORE SAVE!
         alert('Product added!');
@@ -524,10 +529,25 @@ function renderProducts() {
         const div = document.createElement('div');
         div.className = 'product';
         div.setAttribute('data-category', product.category);
-        div.innerHTML = `
+        let productHtml = `
             <img src="${product.image}" alt="${product.name}" />
             <h3>${product.name}</h3>
             <p class="product-price">$${product.price.toFixed(2)}</p>
+            `;
+        // Seller view: show stock by color
+    
+        if (currentUserRole === "seller") {
+            let stockHtml = `<ul>`;
+            // If stock is not defined, skip
+            if (product.stock) {
+                for (const color in product.stock) {
+                    stockHtml += `<li>${color}: ${product.stock[color]} in stock</li>`;
+                }
+             }
+            stockHtml += `</ul>`;
+            productHtml += stockHtml;
+        } else {
+            productHtml += `
             <select>
                 <option>Red</option>
                 <option>Blue</option>
@@ -535,11 +555,15 @@ function renderProducts() {
             </select>
             <input type="number" value="1" min="1" />
             <button class="add-to-cart-btn" data-name="${product.name}">Add to Cart</button>
-            ${isLoggedIn ? `
+            `;
+        }
+            if(isLoggedIn) { 
+                productHtml += `
                 <button class="delete-btn" data-idx="${idx}" style="margin-top:0.5rem;background:#bf0a30;">Delete</button>
                 <button class="edit-btn" data-idx="${idx}" style="margin-top:0.5rem;background:#007bff;">Edit</button>
-            ` : ''}
-        `;
+                `;
+            }
+        div.innerHTML = productHtml;
         container.appendChild(div);
     });
     // Attach event listeners for delete/edit after rendering
@@ -605,6 +629,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
