@@ -557,10 +557,7 @@ function renderProducts(selectedColor = 'all') {
             ${product.stock && product.stock[firstColor] !== undefined ? product.stock[firstColor] : 0} in stock
             </span>
             `;
-        }
-            //stockHtml += `</ul>`;
-            //productHtml += stockHtml;
-        else {
+        }else {
             productHtml += `
             <select>
                 <option>Red</option>
@@ -603,18 +600,16 @@ function renderProducts(selectedColor = 'all') {
       addToCart(product);
       });
   });
+    container.querySelectorAll('.seller-color-select').forEach(select => {
+        select.addEventListener('change', function() {
+            const idx = this.getAttribute('data-idx');
+            const selectedColor = this.value;
+            const stock = products[idx].stock && products[idx].stock[selectedColor] !== undefined ? products[idx].stock[selectedColor] : 0;
+            document.getElementById('stockDisplay' + idx).textContent = `${stock} in stock`;
+        });
+    });
     updateUIByRole(currentUserRole);
 }
-container.querySelectorAll('.seller-color-select').forEach(select => {
-    select.addEventListener('change', function() {
-        const idx = this.getAttribute('data-idx');
-        const selectedColor = this.value;
-        const stock = products[idx].stock && products[idx].stock[selectedColor] !== undefined
-            ? products[idx].stock[selectedColor]
-            : 0;
-        document.getElementById('stockDisplay' + idx).textContent = `${stock} in stock`;
-    });
-});
 document.getElementById('goToCheckoutBtn').addEventListener('click', goToCheckout);
 document.getElementById('closeCartBtn').addEventListener('click', closeCart);
 document.getElementById('completePurchaseBtn').addEventListener('click', completePurchase);
@@ -653,6 +648,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
