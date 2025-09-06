@@ -545,7 +545,7 @@ function renderProducts(selectedColor = 'all') {
         if (currentUserRole === "seller") {
             let colorOptions = '';
             for(const color in product.stock){
-                colorOptions += 1<option value="${color}">${color}</option>;
+                colorOptions += `<option value="${color}">${color}</option>`;
             }
             const firstColor = Object.keys(product.stock)[0] || 'Red';
             productHtml += `
@@ -654,6 +654,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
