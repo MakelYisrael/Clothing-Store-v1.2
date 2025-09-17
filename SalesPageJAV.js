@@ -549,6 +549,7 @@ function renderProducts(selectedColor = 'all') {
             }
             const firstColor = Object.keys(product.stock)[0] || 'all';
             const totalStock = Object.values(product.stock).reduce((sum, val) => sum + (val || 0), 0);
+            //product.stock[firstColor] === 'all' ? totalStock : product.stock[firstColor];
             productHtml += `
             <label for="sellerColorSelect${idx}">Color:</label>
             <select class="seller-color-select" data-idx="${idx}" id="sellerColorSelect${idx}">
@@ -659,6 +660,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
