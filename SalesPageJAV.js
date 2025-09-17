@@ -578,6 +578,24 @@ function renderProducts(selectedColor = 'all') {
         div.innerHTML = productHtml;
         container.appendChild(div);
     });
+    container.querySelectorAll('.seller-color-select').forEach(select => {
+        select.addEventListener('change', function() {
+            const idx = this.getAttribute('data-idx');
+            const selectedColor = this.value;
+            let stock;
+            if (selectedColor === "all"){
+                stock =  Object.values(products[idx].stock)
+                 .reduce((sum, val) => sum + (val || 0), 0);
+            } else {
+                stock = products[idx].stock && products[idx].stock[selectedColor] !== undefined
+                ? products[idx].stock[selectedColor]
+                : 0;
+            }
+            //const selectedColor = this.value;
+            //const stock = products[idx].stock && products[idx].stock[selectedColor] !== undefined ? products[idx].stock[selectedColor] : 0;
+            document.getElementById('stockDisplay' + idx).textContent = `${stock} in stock`;
+        });
+    });
     // Attach event listeners for delete/edit after rendering
    container.querySelectorAll('.delete-btn').forEach(btn => {
   btn.addEventListener('click', function() {
@@ -601,24 +619,6 @@ function renderProducts(selectedColor = 'all') {
       addToCart(product);
       });
   });
-    container.querySelectorAll('.seller-color-select').forEach(select => {
-        select.addEventListener('change', function() {
-            const idx = this.getAttribute('data-idx');
-            const selectedColor = this.value;
-            let stock;
-            if (selectedColor === "all"){
-                stock =  Object.values(products[idx].stock)
-                 .reduce((sum, val) => sum + (val || 0), 0);
-            } else {
-                stock = products[idx].stock && products[idx].stock[selectedColor] !== undefined
-                ? products[idx].stock[selectedColor]
-                : 0;
-            }
-            //const selectedColor = this.value;
-            //const stock = products[idx].stock && products[idx].stock[selectedColor] !== undefined ? products[idx].stock[selectedColor] : 0;
-            document.getElementById('stockDisplay' + idx).textContent = `${stock} in stock`;
-        });
-    });
     updateUIByRole(currentUserRole);
 }
 document.getElementById('goToCheckoutBtn').addEventListener('click', goToCheckout);
@@ -659,6 +659,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
