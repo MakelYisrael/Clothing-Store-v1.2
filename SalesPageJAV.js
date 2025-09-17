@@ -336,6 +336,11 @@ async function loadHistoryFromFirestore() {
 }
 
 function goToCheckout() {
+    if(!auth.currentUser){
+        alert("⚠️ Please sign in to checkout.");
+        showLoginUI();
+        return;
+    }
     document.querySelector('.products').style.display = 'none';
     document.querySelector('.checkout').style.display = 'none';
     document.getElementById('cartPage').style.display = 'block';
@@ -364,6 +369,11 @@ function closeCart() {
 }
 
 async function completePurchase() {
+    if(!auth.currentUser){
+        alert("⚠️ You must be signed in to complete a purchase.");
+        showLoginUI();
+        return;
+    }
    alert('Purchase completed successfully!');
    const order = {
        items: [...cart],
@@ -661,6 +671,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
