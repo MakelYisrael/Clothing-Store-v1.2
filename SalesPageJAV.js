@@ -547,7 +547,7 @@ function renderProducts(selectedColor = 'all') {
             for(const color in product.stock){
                 colorOptions += `<option value="${color}">${color}</option>`;
             }
-            const firstColor = Object.keys(product.stock)[0] || 'all';
+            //const firstColor = Object.keys(product.stock)[0] || 'all';
             const totalStock = Object.values(product.stock).reduce((sum, val) => sum + (val || 0), 0);
             //product.stock[firstColor] === 'all' ? totalStock : product.stock[firstColor];
             productHtml += `
@@ -556,9 +556,10 @@ function renderProducts(selectedColor = 'all') {
             ${colorOptions}
             </select>
             <span id="stockDisplay${idx}" class="stock-display">
-            ${product.stock && product.stock[firstColor] !== undefined ? product.stock[firstColor] : 0} in stock
+            ${totalStock} in stock
             </span>
             `;
+            //${product.stock && product.stock[firstColor] !== undefined ? product.stock[firstColor] : 0} in stock
         }else {
             productHtml += `
             <select>
@@ -660,6 +661,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }
 };
+
 
 
 
