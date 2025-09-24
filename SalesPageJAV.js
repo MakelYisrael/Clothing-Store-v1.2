@@ -104,11 +104,11 @@ function updateUIByRole(role) {
     document.querySelectorAll('.add-to-cart-btn').forEach(btn => btn.style.display = 'inline-block');
     document.getElementById("goToCheckoutBtn").style.display = "inline-block";
   }
-    /*else if(!isLoggedIn) {
+    else if(!isLoggedIn) {
     // If not logged in
     document.querySelectorAll('.add-to-cart-btn').forEach(btn => btn.style.display = 'inline-block');
     document.getElementById("goToCheckoutBtn").style.display = "inline-block";
-  }*/
+  }
 }
 
 async function getUserRole(uid) {
@@ -684,6 +684,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }*/
 };
+
 
 
 
