@@ -99,7 +99,7 @@ function updateUIByRole(role) {
     // Show seller buttons
      document.querySelectorAll('.edit-btn, .delete-btn').forEach(btn => btn.style.display = 'inline-block');
     document.getElementById("addProductNavBtn").style.display = "inline-block";
-  } else if (role === "buyer") {
+  } else if (role === "buyer" || role === null) {
     // Show buyer buttons
     document.querySelectorAll('.add-to-cart-btn').forEach(btn => btn.style.display = 'inline-block');
     document.getElementById("goToCheckoutBtn").style.display = "inline-block";
@@ -679,6 +679,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }*/
 };
+
 
 
 
