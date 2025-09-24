@@ -99,11 +99,15 @@ function updateUIByRole(role) {
     // Show seller buttons
      document.querySelectorAll('.edit-btn, .delete-btn').forEach(btn => btn.style.display = 'inline-block');
     document.getElementById("addProductNavBtn").style.display = "inline-block";
-  } else if (role === "buyer" || !isLoggedIn) {
+  } else if (role === "buyer") {
     // Show buyer buttons
     document.querySelectorAll('.add-to-cart-btn').forEach(btn => btn.style.display = 'inline-block');
     document.getElementById("goToCheckoutBtn").style.display = "inline-block";
-    //document.getElementById("addProductNavBtn").style.display = "none";
+  }
+    else if (!isLoggedIn) {
+    // If not logged in
+    document.querySelectorAll('.add-to-cart-btn').forEach(btn => btn.style.display = 'inline-block');
+    document.getElementById("goToCheckoutBtn").style.display = "inline-block";
   }
 }
 
@@ -680,6 +684,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }*/
 };
+
 
 
 
