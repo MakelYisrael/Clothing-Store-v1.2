@@ -226,6 +226,11 @@ document.getElementById('searchBar').addEventListener('input', filterProducts);
 
 // Add item to cart
 function addToCart(item) {
+    if(!auth.currentUser){
+        alert("⚠️ Please sign in to Add to Cart.");
+        showLoginUI();
+        return;
+    }
   // If the same product+color exists, increase quantity instead of duplicating
     alert(item.name + " added to cart!");
   const existing = cart.find(p => p.name === item.name && p.color === item.color);
@@ -685,6 +690,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }*/
 };
+
 
 
 
