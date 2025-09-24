@@ -104,11 +104,11 @@ function updateUIByRole(role) {
     document.querySelectorAll('.add-to-cart-btn').forEach(btn => btn.style.display = 'inline-block');
     document.getElementById("goToCheckoutBtn").style.display = "inline-block";
   }
-    else if (!isLoggedIn) {
+    /*else if(!isLoggedIn) {
     // If not logged in
     document.querySelectorAll('.add-to-cart-btn').forEach(btn => btn.style.display = 'inline-block');
     document.getElementById("goToCheckoutBtn").style.display = "inline-block";
-  }
+  }*/
 }
 
 async function getUserRole(uid) {
@@ -671,7 +671,7 @@ window.onload = async () => {
         document.querySelector('.filters').style.display = 'block';
         document.querySelector('.products').style.display = 'grid';
         document.querySelector('.checkout').style.display = 'block';
-        document.getElementById('addProductNavBtn').style.display = 'inline-block';
+        document.getElementById('addProductNavBtn').style.display = 'none';
         document.getElementById('logoutBtn').style.display = 'inline-block';
     } /*else {
         document.getElementById('loginPage').style.display = 'none';
@@ -684,6 +684,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }*/
 };
+
 
 
 
