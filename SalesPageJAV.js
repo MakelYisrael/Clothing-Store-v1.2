@@ -103,6 +103,7 @@ function updateUIByRole(role) {
     // Show buyer buttons
     document.querySelectorAll('.add-to-cart-btn').forEach(btn => btn.style.display = 'inline-block');
     document.getElementById("goToCheckoutBtn").style.display = "inline-block";
+    document.getElementById("addProductNavBtn").style.display = "none";
   }
 }
 
@@ -679,6 +680,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }*/
 };
+
 
 
 
