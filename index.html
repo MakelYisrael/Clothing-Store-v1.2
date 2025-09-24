@@ -1,118 +1,104 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JHF Shop</title>
-    <link rel="stylesheet" href="SalesPageCSS.css">
-    <script type="module" src="SalesPageJAV.js"></script>
-    <!-- <script src="SalesPageJAV.js" defer></script> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothing Store</title>
 </head>
-            <body>
-                <header>
-                    <h1>Welcome to JHF Shop!</h1>
-                </header>
-                <nav class="main-nav">
-                    <div class="nav-left">
-                        <input type="text" id="searchBar" placeholder="Search for shirts, pants, hats, etc..."/>
-                        <button id="addProductNavBtn" style="display:none;">Add Product</button>
-                    </div>
-                    <div class="nav-right">
-                        <button id="logoutBtn" style="display:none;">Logout</button>
-                    </div>
-                </nav>
-               <div class="filters">
-                   <label for="categoryDropdown">Product:</label>
-                   <select id="categoryDropdown">
-                       <!-- <option value="all">All</option> -->
-                       <!-- Dynamic options will be added by JS -->
-                   </select>
-                </div>
-                <div id="sellerFilters" style="display:none; margin: 1em 0;">
-                    <label for="stockColorFilter">Filter by Color:</label>
-                    <select id="stockColorFilter">
-                        <option value="all">All</option>
-                        <option value="Red">Red</option>
-                        <option value="Blue">Blue</option>
-                        <option value="Black">Black</option>
-                    </select>
-                </div>
-                <div class="products" id="productList"></div>
-                <div class="checkout">
-                    <button id="goToCheckoutBtn">Go to Checkout</button>
-                </div>
-                <div class="cart" id="cartPage" style="display: none;">
-                    <h2>Your Cart</h2>
-                    <div id="cartItems"></div>
-                    <p>Total: $<span id="cartTotal">0.00</span></p>
-                    <button id="completePurchaseBtn">Purchase</button>
-                    <button id="closeCartBtn">Back to Shopping</button>
-                </div>
-                <div class="login" id="loginPage">
-                    <h2>Please sign in to continue</h2>
-                    <input type="text" id="username" placeholder="Username" /><br /><br />
-                    <input type="password" id="password" placeholder="Password" /><br /><br />
-                    <button id="signInBtn">Sign In</button>
-                </div>
-                <div class="add-product-page" id="addProductPage" style="display:none;">
-                    <h2>Add New Product</h2>
-                    <input type="text" id="newProductName" placeholder="Product Name" /><br /><br />
-                    <select id="newProductCategory">
-                        <option value="shirts">Shirts</option>
-                        <option value="pants">Pants</option>
-                        <option value="hats">Hats</option>
-                        <option value="shorts">Shorts</option>
-                        <option value="socks">Socks</option>
-                        <option value="shoes">Shoes</option>
-                        <option value="underwear">Underwear</option>
-                    </select><br /><br />
-                    <input type="text" id="newProductImage" placeholder="Image URL (optional)" /><br /><br />
-                    <!-- <input type="file" id="newProductImageFile" accept="image/*"><br /><br /> -->
-                    <input type="number" id="newProductPrice" placeholder="Price (e.g. 19.99)" min="0" step="0.01" /><br /><br />
-                    <div>
-                       <label>Stock (Red):</label>
-                       <input type="number" id="stockRed" min="0" value="0" />
-                   </div>
-                   <div>
-                       <label>Stock (Blue):</label>
-                       <input type="number" id="stockBlue" min="0" value="0" />
-                   </div>
-                   <div>
-                       <label>Stock (Black):</label>
-                       <input type="number" id="stockBlack" min="0" value="0" />
-                   </div>
-                    <button id="addNewProductBtn">Add Product</button>
-                    <button id="backToShopBtn">Back to Shop</button>
-                </div>
-                <div class="edit-product-page" id="editProductPage" style="display:none;">
-                    <h2>Edit Product</h2>
-                    <input type="text" id="editProductName" placeholder="Product Name" /><br /><br />
-                    <select id="editProductCategory">
-                        <option value="shirts">Shirts</option>
-                        <option value="pants">Pants</option>
-                        <option value="hats">Hats</option>
-                        <option value="shorts">Shorts</option>
-                        <option value="socks">Socks</option>
-                        <option value="shoes">Shoes</option>
-                        <option value="underwear">Underwear</option>
-                    </select><br /><br />
-                    <input type="text" id="editProductImage" placeholder="Image URL" /><br /><br />
-                    <input type="number" id="editProductPrice" placeholder="Price (e.g. 19.99)" min="0" step="0.01" /><br /><br />
-                    <div>
-                       <label>Stock (Red):</label>
-                       <input type="number" id="editstockRed" min="0" value="0" />
-                   </div>
-                   <div>
-                       <label>Stock (Blue):</label>
-                       <input type="number" id="editstockBlue" min="0" value="0" />
-                   </div>
-                   <div>
-                       <label>Stock (Black):</label>
-                       <input type="number" id="editstockBlack" min="0" value="0" />
-                   </div>
-                    <img id="editProductPreview" src="" alt="Preview" style="max-width:200px;display:none;" /><br /><br />
-                    <button id="saveEditProductBtn">Save Changes</button>
-                    <button id="cancelEditProductBtn">Cancel</button>
-                </div>    
-            </body>
-            </html>
+<body>
+    <nav class="main-nav">
+        <div class="nav-right">
+            <button id="logoutBtn" style="display:none;">Logout</button>
+            <button id="signupNavBtn">Sign Up</button>
+        </div>
+    </nav>
+
+    <div id="loginPage">
+        <!-- Existing login content -->
+        <button id="signUpBtn">Sign Up</button>
+    </div>
+
+    <div class="signup" id="signupPage" style="display:none;">
+        <h2>Create Your Account</h2>
+        <form id="signupForm">
+            <input type="text" id="signupUsername" placeholder="Create Username" required /><br /><br />
+            <input type="password" id="signupPassword" placeholder="Create Password" required /><br /><br />
+            <input type="password" id="signupConfirmPassword" placeholder="Confirm Password" required /><br /><br />
+            <input type="email" id="signupEmail" placeholder="Email Address" required /><br /><br />
+            <input type="text" id="signupPhone" placeholder="Phone Number (optional)" /><br /><br />
+            <button type="submit">Sign Up</button>
+            <button type="button" id="backToLoginBtn">Back to Login</button>
+        </form>
+    </div>
+
+    <script>
+        // Show signup page when Sign Up is clicked
+        const signUpBtn = document.getElementById('signUpBtn');
+        const signupNavBtn = document.getElementById('signupNavBtn');
+        const loginPage = document.getElementById('loginPage');
+        const signupPage = document.getElementById('signupPage');
+        const backToLoginBtn = document.getElementById('backToLoginBtn');
+
+        if (signUpBtn) {
+          signUpBtn.onclick = () => {
+            loginPage.style.display = 'none';
+            signupPage.style.display = 'block';
+          };
+        }
+        if (signupNavBtn) {
+          signupNavBtn.onclick = () => {
+            loginPage.style.display = 'none';
+            signupPage.style.display = 'block';
+          };
+        }
+        if (backToLoginBtn) {
+          backToLoginBtn.onclick = () => {
+            signupPage.style.display = 'none';
+            loginPage.style.display = 'block';
+          };
+        }
+
+        // Signup form submission
+        const signupForm = document.getElementById('signupForm');
+        signupForm.onsubmit = async (e) => {
+          e.preventDefault();
+          const username = document.getElementById('signupUsername').value;
+          const password = document.getElementById('signupPassword').value;
+          const confirmPassword = document.getElementById('signupConfirmPassword').value;
+          const email = document.getElementById('signupEmail').value;
+          const phone = document.getElementById('signupPhone').value;
+
+          if (password !== confirmPassword) {
+            alert('Passwords do not match!');
+            return;
+          }
+
+          // POST to Firestorm API
+          try {
+            const response = await fetch('/api/signup', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                username,
+                password,
+                email,
+                phone,
+              }),
+            });
+            if (response.ok) {
+              alert('Signup successful!');
+              signupPage.style.display = 'none';
+              loginPage.style.display = 'block';
+            } else {
+              const error = await response.text();
+              alert('Signup failed: ' + error);
+            }
+          } catch (err) {
+            alert('Network error: ' + err.message);
+          }
+        };
+    </script>
+</body>
+</html>
