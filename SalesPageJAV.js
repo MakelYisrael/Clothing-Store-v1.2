@@ -227,6 +227,7 @@ document.getElementById('searchBar').addEventListener('input', filterProducts);
 // Add item to cart
 function addToCart(item) {
   // If the same product+color exists, increase quantity instead of duplicating
+    alert(item + " added to cart!");
   const existing = cart.find(p => p.name === item.name && p.color === item.color);
   if (existing) {
     existing.quantity += item.quantity;
@@ -684,6 +685,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }*/
 };
+
 
 
 
