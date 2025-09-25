@@ -162,7 +162,7 @@ function showAppUI() {
     document.querySelector('.filters').style.display = 'block';
     document.querySelector('.products').style.display = 'grid';
     document.querySelector('.checkout').style.display = 'block';
-    document.getElementById('addProductNavBtn').style.display = 'inline-block';
+    document.getElementById('addProductNavBtn').style.display = 'none';
 }
 
 function showLoginUI() {
@@ -750,6 +750,7 @@ window.onload = async () => {
         document.getElementById("signupNavBtn").style.display = "inline-block";
   }
 };
+
 
 
 
