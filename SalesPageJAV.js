@@ -149,8 +149,10 @@ onAuthStateChanged(auth, async (user) => {
 function showAppUI() {
     if (localStorage.getItem("loggedIn") === "true") {
         document.getElementById('logoutBtn').style.display = 'inline-block';
+        document.getElementById("signupNavBtn").style.display = "none";
     } else {
         document.getElementById('logoutBtn').style.display = 'none';
+        document.getElementById("signupNavBtn").style.display = "inline-block";
     }
     document.getElementById('loginPage').style.display = 'none';
     document.querySelector('header').style.display = 'block';
@@ -779,6 +781,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }*/
 };
+
 
 
 
