@@ -163,6 +163,7 @@ function showAppUI() {
     document.querySelector('.products').style.display = 'grid';
     document.querySelector('.checkout').style.display = 'block';
     document.getElementById('addProductNavBtn').style.display = 'none';
+    document.getElementById('cartPage').style.display = 'none';
 }
 
 function showLoginUI() {
@@ -175,6 +176,7 @@ function showLoginUI() {
     document.querySelector('.checkout').style.display = 'none';
     document.getElementById('addProductNavBtn').style.display = 'none';
     document.getElementById('logoutBtn').style.display = 'none';
+    document.getElementById('cartPage').style.display = 'none';
 }
 document.getElementById('signInBtn').addEventListener('click', signIn);
 document.getElementById('logoutBtn').addEventListener('click', logout);
@@ -191,6 +193,7 @@ function signupUI() {
   document.querySelector('.checkout').style.display = 'none';
   document.getElementById('addProductNavBtn').style.display = 'none';
   document.getElementById('logoutBtn').style.display = 'none';
+  document.getElementById('cartPage').style.display = 'none';
 }
 document.getElementById('signupNavBtn').addEventListener('click', signupUI);
 document.getElementById('signUpBtn').addEventListener('click', signupUI);
@@ -722,6 +725,7 @@ function logout() {
     }).catch((error) => {
         alert("Logout failed: " + error.message);
     });
+    document.getElementById('cartPage').style.display = 'none';
 }
 
 window.onload = async () => {
@@ -750,6 +754,7 @@ window.onload = async () => {
         document.getElementById("signupNavBtn").style.display = "inline-block";
   }
 };
+
 
 
 
