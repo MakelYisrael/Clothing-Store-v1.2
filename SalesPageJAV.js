@@ -716,7 +716,7 @@ document.getElementById('completePurchaseBtn').addEventListener('click', complet
 function logout() {
     signOut(auth).then(() => {
         isLoggedIn = false;
-        showLoginUI();
+        showAppUI();
     }).catch((error) => {
         alert("Logout failed: " + error.message);
     });
@@ -755,6 +755,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }*/
 };
+
 
 
 
