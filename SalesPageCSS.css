@@ -345,7 +345,7 @@ header {
     border-radius: 5px;
     border: 1px solid #ccc;
 }
-.signup button {
+#signupNavBtn {
     margin: 0.5rem 0.2rem;
     padding: 0.4rem 0.8rem;
     border: none;
@@ -355,7 +355,7 @@ header {
     cursor: pointer;
     font-size: 1rem;
 }
-.signup button:hover {
+#signupNavBtn:hover {
     background: #0056b3;
 }
 
@@ -387,6 +387,7 @@ header {
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.10);
 }
+
 
 
 
