@@ -16,6 +16,7 @@
                     <div class="nav-left">
                         <input type="text" id="searchBar" placeholder="Search for shirts, pants, hats, etc..."/>
                         <button id="addProductNavBtn" style="display:none;">Add Product</button>
+                        <button id="signupNavBtn">Sign Up</button>
                     </div>
                     <div class="nav-right">
                         <button id="logoutBtn" style="display:none;">Logout</button>
@@ -53,6 +54,19 @@
                     <input type="text" id="username" placeholder="Username" /><br /><br />
                     <input type="password" id="password" placeholder="Password" /><br /><br />
                     <button id="signInBtn">Sign In</button>
+                    <button id="signUpBtn">Sign Up</button>
+                </div>
+                <div class="signup" id="signupPage" style="display:none;">
+                    <h2>Create Your Account</h2>
+                    <form id="signupForm">
+                        <input type="text" id="signupUsername" placeholder="Create Username" required /><br /><br />
+                        <input type="password" id="signupPassword" placeholder="Create Password" required /><br /><br />
+                        <input type="password" id="signupConfirmPassword" placeholder="Confirm Password" required /><br /><br />
+                        <input type="email" id="signupEmail" placeholder="Email Address" required /><br /><br />
+                        <input type="text" id="signupPhone" placeholder="Phone Number (optional)" /><br /><br />
+                        <button type="submit">Sign Up</button>
+                        <button type="button" id="backToLoginBtn">Back to Login</button>
+                    </form>
                 </div>
                 <div class="add-product-page" id="addProductPage" style="display:none;">
                     <h2>Add New Product</h2>
