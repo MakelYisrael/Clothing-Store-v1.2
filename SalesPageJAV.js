@@ -158,6 +158,7 @@ function showAppUI() {
 
 function showLoginUI() {
     document.getElementById('loginPage').style.display = 'block';
+    document.getElementById('signupPage').style.display = 'none';
     document.querySelector('header').style.display = 'none';
     document.querySelector('nav').style.display = 'none';
     document.querySelector('.filters').style.display = 'none';
@@ -751,6 +752,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }*/
 };
+
 
 
 
