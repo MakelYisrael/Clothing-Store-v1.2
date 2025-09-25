@@ -146,6 +146,9 @@ onAuthStateChanged(auth, async (user) => {
 });
 
 function showAppUI() {
+    if(!isLoggedIn){
+        document.getElementById('logoutBtn').style.display = 'none';
+    }
     document.getElementById('loginPage').style.display = 'none';
     document.querySelector('header').style.display = 'block';
     document.querySelector('nav').style.display = 'flex';
@@ -153,10 +156,7 @@ function showAppUI() {
     document.querySelector('.products').style.display = 'grid';
     document.querySelector('.checkout').style.display = 'block';
     document.getElementById('addProductNavBtn').style.display = 'inline-block';
-    document.getElementById('logoutBtn').style.display = 'none';
-    if(isLoggedIn){
-        document.getElementById('logoutBtn').style.display = 'inline-block';
-    }
+    document.getElementById('logoutBtn').style.display = 'inline-block';
 }
 
 function showLoginUI() {
@@ -755,6 +755,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }*/
 };
+
 
 
 
