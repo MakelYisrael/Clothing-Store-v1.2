@@ -718,7 +718,7 @@ function logout() {
     signOut(auth).then(() => {
         isLoggedIn = false;
         localStorage.setItem("loggedIn", "false");
-        showLoginUI();
+        showAppUI();
     }).catch((error) => {
         alert("Logout failed: " + error.message);
     });
@@ -750,6 +750,7 @@ window.onload = async () => {
         document.getElementById("signupNavBtn").style.display = "inline-block";
   }
 };
+
 
 
 
