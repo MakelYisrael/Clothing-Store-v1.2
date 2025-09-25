@@ -150,9 +150,11 @@ function showAppUI() {
     if (localStorage.getItem("loggedIn") === "true") {
         document.getElementById('logoutBtn').style.display = 'inline-block';
         document.getElementById("signupNavBtn").style.display = "none";
+        document.getElementById("signinNavBtn").style.display = "none";
     } else {
         document.getElementById('logoutBtn').style.display = 'none';
         document.getElementById("signupNavBtn").style.display = "inline-block";
+        document.getElementById("signinNavBtn").style.display = "inline-block";
     }
     document.getElementById('loginPage').style.display = 'none';
     document.querySelector('header').style.display = 'block';
@@ -177,12 +179,7 @@ function showLoginUI() {
 document.getElementById('signInBtn').addEventListener('click', signIn);
 document.getElementById('logoutBtn').addEventListener('click', logout);
 document.getElementById('backToLoginBtn').addEventListener('click', showLoginUI);
-
-/*const signupNavBtn = document.getElementById('signupNavBtn');
-const signUpBtn = document.getElementById('signUpBtn');
-const loginPage = document.getElementById('loginPage');
-const signupPage = document.getElementById('signupPage');
-const backToLoginBtn = document.getElementById('backToLoginBtn');*/
+document.getElementById('signinNavBtn').addEventListener('click', showLoginUI);
 
 function signupUI() {
   document.getElementById('loginPage').style.display = 'none';
@@ -753,6 +750,7 @@ window.onload = async () => {
         document.getElementById("signupNavBtn").style.display = "inline-block";
   }
 };
+
 
 
 
