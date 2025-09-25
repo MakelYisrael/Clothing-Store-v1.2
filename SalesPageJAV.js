@@ -177,7 +177,8 @@ const signupPage = document.getElementById('signupPage');
 const backToLoginBtn = document.getElementById('backToLoginBtn');*/
 
 function signupUI() {
-  document.getElementById('loginPage').style.display = 'block';
+  document.getElementById('loginPage').style.display = 'none';
+  document.getElementById('signupPage').style.display = 'block';
   document.querySelector('header').style.display = 'none';
   document.querySelector('nav').style.display = 'none';
   document.querySelector('.filters').style.display = 'none';
@@ -750,6 +751,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }*/
 };
+
 
 
 
