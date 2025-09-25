@@ -168,7 +168,7 @@ function showLoginUI() {
 }
 document.getElementById('signInBtn').addEventListener('click', signIn);
 document.getElementById('logoutBtn').addEventListener('click', logout);
-document.getElementById('backToLoginBtn').addEventListener('click', signIn);
+document.getElementById('backToLoginBtn').addEventListener('click', showLoginUI);
 
 /*const signupNavBtn = document.getElementById('signupNavBtn');
 const signUpBtn = document.getElementById('signUpBtn');
@@ -751,6 +751,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }*/
 };
+
 
 
 
