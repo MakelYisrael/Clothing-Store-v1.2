@@ -169,6 +169,24 @@ function showLoginUI() {
 document.getElementById('signInBtn').addEventListener('click', signIn);
 document.getElementById('logoutBtn').addEventListener('click', logout);
 
+const signupNavBtn = document.getElementById('signupNavBtn');
+const signUpBtn = document.getElementById('signUpBtn');
+const loginPage = document.getElementById('loginPage');
+const signupPage = document.getElementById('signupPage');
+
+if (signupNavBtn) {
+  signupNavBtn.onclick = () => {
+    loginPage.style.display = 'none';
+    signupPage.style.display = 'block';
+  };
+}
+else if (signUpBtn) {
+  signUpBtn.onclick = () => {
+    loginPage.style.display = 'none';
+    signupPage.style.display = 'block';
+  };
+}
+
 // Signup form submission
 const signupForm = document.getElementById('signupForm');
 if (signupForm) {
@@ -730,6 +748,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }*/
 };
+
 
 
 
