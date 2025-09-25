@@ -178,6 +178,13 @@ if (signupNavBtn) {
   signupNavBtn.onclick = () => {
     loginPage.style.display = 'none';
     signupPage.style.display = 'block';
+    document.querySelector('header').style.display = 'none';
+    document.querySelector('nav').style.display = 'none';
+    document.querySelector('.filters').style.display = 'none';
+    document.querySelector('.products').style.display = 'none';
+    document.querySelector('.checkout').style.display = 'none';
+    document.getElementById('addProductNavBtn').style.display = 'none';
+    document.getElementById('logoutBtn').style.display = 'none';
   };
 }
 else if (signUpBtn) {
@@ -748,6 +755,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }*/
 };
+
 
 
 
