@@ -201,7 +201,7 @@ if (signUpBtn) {
     document.getElementById('logoutBtn').style.display = 'none';
   };
 }
-if (backToLoginBtn) {
+/*if (backToLoginBtn) {
   signUpBtn.onclick = () => {
     loginPage.style.display = 'block';
     signupPage.style.display = 'none';
@@ -213,7 +213,7 @@ if (backToLoginBtn) {
     document.getElementById('addProductNavBtn').style.display = 'none';
     document.getElementById('logoutBtn').style.display = 'none';
   };
-}
+}*/
 
 // Signup form submission
 const signupForm = document.getElementById('signupForm');
@@ -776,6 +776,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }*/
 };
+
 
 
 
