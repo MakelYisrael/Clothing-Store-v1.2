@@ -4,6 +4,7 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 import { getFirestore, onSnapshot, doc, setDoc, getDoc, getDocs, updateDoc, deleteDoc, arrayUnion, addDoc, collection } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-storage.js";
+import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAkONo3PzKXEyLOYhPmavD6A9bYkali9yw",
@@ -165,9 +166,48 @@ function showLoginUI() {
     document.getElementById('addProductNavBtn').style.display = 'none';
     document.getElementById('logoutBtn').style.display = 'none';
 }
-
 document.getElementById('signInBtn').addEventListener('click', signIn);
 document.getElementById('logoutBtn').addEventListener('click', logout);
+
+// Signup form submission
+const signupForm = document.getElementById('signupForm');
+if (signupForm) {
+    signupForm.onsubmit = async (e) => {
+        e.preventDefault();
+        const username = document.getElementById('signupUsername').value;
+        const password = document.getElementById('signupPassword').value;
+        const confirmPassword = document.getElementById('signupConfirmPassword').value;
+        const email = document.getElementById('signupEmail').value;
+        const phone = document.getElementById('signupPhone').value;
+
+        if (password !== confirmPassword) {
+            alert('Passwords do not match!');
+            return;
+        }
+
+        // Use Firebase Auth for signup
+        try {
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+
+            // Save extra info to Firestore (username, phone)
+            await setDoc(doc(db, "users", user.uid), {
+                username: username,
+                email: email,
+                phone: phone,
+                role: "buyer", // or allow user to choose
+                cart: [],
+                history: []
+            });
+
+            alert('Signup successful!');
+            signupPage.style.display = 'none';
+            loginPage.style.display = 'block';
+        } catch (error) {
+            alert('Signup failed: ' + error.message);
+        }
+    };
+}
 
 async function loadProductsFromFirestore() {
     products = [];
@@ -690,6 +730,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }*/
 };
+
 
 
 
