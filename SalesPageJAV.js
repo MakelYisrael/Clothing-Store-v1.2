@@ -726,16 +726,16 @@ window.onload = async () => {
     await loadProductsFromFirestore();
     renderProducts('all');
     renderCategoryDropdown()
-
-    if (!isLoggedIn) {
-        /*document.getElementById('loginPage').style.display = 'block';
-        document.querySelector('header').style.display = 'none';
-        document.querySelector('nav').style.display = 'none';
-        document.querySelector('.filters').style.display = 'none';
-        document.querySelector('.products').style.display = 'none';
-        document.querySelector('.checkout').style.display = 'none';
+    if (localStorage.getItem("loggedIn") === "true") {
+        document.getElementById('loginPage').style.display = 'none';
+        document.querySelector('header').style.display = 'block';
+        document.querySelector('nav').style.display = 'flex';
+        document.querySelector('.filters').style.display = 'block';
+        document.querySelector('.products').style.display = 'grid';
+        document.querySelector('.checkout').style.display = 'block';
         document.getElementById('addProductNavBtn').style.display = 'none';
-        document.getElementById('logoutBtn').style.display = 'none';*/
+        document.getElementById("logoutBtn").style.display = "block";
+    } else {
         document.getElementById('loginPage').style.display = 'none';
         document.querySelector('header').style.display = 'block';
         document.querySelector('nav').style.display = 'flex';
@@ -744,7 +744,26 @@ window.onload = async () => {
         document.querySelector('.checkout').style.display = 'block';
         document.getElementById('addProductNavBtn').style.display = 'none';
         document.getElementById('logoutBtn').style.display = 'none';
-    } /*else {
+  }
+
+    //if (!isLoggedIn) {
+        /*document.getElementById('loginPage').style.display = 'block';
+        document.querySelector('header').style.display = 'none';
+        document.querySelector('nav').style.display = 'none';
+        document.querySelector('.filters').style.display = 'none';
+        document.querySelector('.products').style.display = 'none';
+        document.querySelector('.checkout').style.display = 'none';
+        document.getElementById('addProductNavBtn').style.display = 'none';
+        document.getElementById('logoutBtn').style.display = 'none';*/
+        /*document.getElementById('loginPage').style.display = 'none';
+        document.querySelector('header').style.display = 'block';
+        document.querySelector('nav').style.display = 'flex';
+        document.querySelector('.filters').style.display = 'block';
+        document.querySelector('.products').style.display = 'grid';
+        document.querySelector('.checkout').style.display = 'block';
+        document.getElementById('addProductNavBtn').style.display = 'none';
+        document.getElementById('logoutBtn').style.display = 'none';
+    }*/ /*else {
         document.getElementById('loginPage').style.display = 'none';
         document.querySelector('header').style.display = 'block';
         document.querySelector('nav').style.display = 'flex';
@@ -755,6 +774,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }*/
 };
+
 
 
 
