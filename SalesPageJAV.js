@@ -154,6 +154,9 @@ function showAppUI() {
     document.querySelector('.checkout').style.display = 'block';
     document.getElementById('addProductNavBtn').style.display = 'inline-block';
     document.getElementById('logoutBtn').style.display = 'inline-block';
+    if(!isLoggedIn){
+        document.getElementById('logoutBtn').style.display = 'none';
+    }
 }
 
 function showLoginUI() {
@@ -752,6 +755,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }*/
 };
+
 
 
 
