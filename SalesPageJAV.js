@@ -65,6 +65,7 @@ function signIn() {
     signInWithEmailAndPassword(auth, username, password)
         .then((userCredential) => {
             isLoggedIn = true;
+            localStorage.setItem("loggedIn", "true");
             showAppUI();
             renderProducts();
         })
@@ -775,6 +776,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }*/
 };
+
 
 
 
