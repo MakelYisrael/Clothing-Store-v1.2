@@ -346,6 +346,7 @@ header {
     border: 1px solid #ccc;
 }
 #signupNavBtn {
+    margin-left: auto;
     margin: 0.5rem 0.2rem;
     padding: 0.4rem 0.8rem;
     border: none;
@@ -387,6 +388,7 @@ header {
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.10);
 }
+
 
 
 
