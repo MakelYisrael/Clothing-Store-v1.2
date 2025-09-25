@@ -743,7 +743,7 @@ window.onload = async () => {
         document.querySelector('.products').style.display = 'grid';
         document.querySelector('.checkout').style.display = 'block';
         document.getElementById('addProductNavBtn').style.display = 'none';
-        document.getElementById('logoutBtn').style.display = 'inline-block';
+        document.getElementById('logoutBtn').style.display = 'none';
     } /*else {
         document.getElementById('loginPage').style.display = 'none';
         document.querySelector('header').style.display = 'block';
@@ -755,6 +755,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }*/
 };
+
 
 
 
