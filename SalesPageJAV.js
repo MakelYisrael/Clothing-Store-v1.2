@@ -173,6 +173,7 @@ const signupNavBtn = document.getElementById('signupNavBtn');
 const signUpBtn = document.getElementById('signUpBtn');
 const loginPage = document.getElementById('loginPage');
 const signupPage = document.getElementById('signupPage');
+const backToLoginBtn = document.getElementById('backToLoginBtn');
 
 if (signupNavBtn) {
   signupNavBtn.onclick = () => {
@@ -191,6 +192,19 @@ if (signUpBtn) {
   signUpBtn.onclick = () => {
     loginPage.style.display = 'none';
     signupPage.style.display = 'block';
+    document.querySelector('header').style.display = 'none';
+    document.querySelector('nav').style.display = 'none';
+    document.querySelector('.filters').style.display = 'none';
+    document.querySelector('.products').style.display = 'none';
+    document.querySelector('.checkout').style.display = 'none';
+    document.getElementById('addProductNavBtn').style.display = 'none';
+    document.getElementById('logoutBtn').style.display = 'none';
+  };
+}
+if (backToLoginBtn) {
+  signUpBtn.onclick = () => {
+    loginPage.style.display = 'block';
+    signupPage.style.display = 'none';
     document.querySelector('header').style.display = 'none';
     document.querySelector('nav').style.display = 'none';
     document.querySelector('.filters').style.display = 'none';
@@ -762,6 +776,7 @@ window.onload = async () => {
         document.getElementById('logoutBtn').style.display = 'inline-block';
     }*/
 };
+
 
 
 
