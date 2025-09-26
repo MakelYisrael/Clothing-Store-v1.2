@@ -718,6 +718,7 @@ document.getElementById('closeCartBtn').addEventListener('click', closeCart);
 document.getElementById('completePurchaseBtn').addEventListener('click', completePurchase);
 
 function logout() {
+    confirm("Are you sure you want to logout?");
     signOut(auth).then(() => {
         isLoggedIn = false;
         localStorage.setItem("loggedIn", "false");
@@ -754,6 +755,7 @@ window.onload = async () => {
         document.getElementById("signupNavBtn").style.display = "inline-block";
   }
 };
+
 
 
 
