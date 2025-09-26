@@ -479,7 +479,7 @@ header {
   background: #bf0a30; /* red hover */
 }
 
-#backBtn {
+#back {
   background: #22335a;
   color: #fff;
   font-weight: bold;
@@ -489,8 +489,8 @@ header {
   margin-top: 0.5em;
 }
 
-#backBtn:hover,
-#backBtn:focus {
+#back:hover,
+#back:focus {
   background: #bf0a30; /* red hover */
 }
 
@@ -509,6 +509,7 @@ header {
     max-width: 98vw;
   }
 }
+
 
 
 
