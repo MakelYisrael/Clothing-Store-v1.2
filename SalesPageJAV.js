@@ -788,6 +788,7 @@ window.onload = async () => {
         document.getElementById('addProductNavBtn').style.display = 'none';
         document.getElementById("logoutBtn").style.display = "inline-block";
         document.getElementById("signupNavBtn").style.display = "none";
+        document.getElementById("signinNavBtn").style.display = "none";
     } else {
         document.getElementById('loginPage').style.display = 'none';
         document.querySelector('header').style.display = 'block';
@@ -798,8 +799,10 @@ window.onload = async () => {
         document.getElementById('addProductNavBtn').style.display = 'none';
         document.getElementById('logoutBtn').style.display = 'none';
         document.getElementById("signupNavBtn").style.display = "inline-block";
+        document.getElementById("signinNavBtn").style.display = "inline-block";
   }
 };
+
 
 
 
