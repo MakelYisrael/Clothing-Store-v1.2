@@ -431,34 +431,31 @@ function goToCheckout() {
     renderCartUI();
     let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
     document.getElementById('cartTotal').textContent = total.toFixed(2);
-    /*const cartItems = document.getElementById('cartItems');
-    cartItems.innerHTML = '';
-    let total = 0;
-
-    cart.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = `${item.name} (${item.color}) x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`;
-        cartItems.appendChild(li);
-        total += item.price * item.quantity;
-    });
-
-    document.getElementById('cartTotal').textContent = total.toFixed(2);*/
-}
-document.getElementById('goToCheckoutBtn').addEventListener('click', goToCheckout);
-
-function closeCart() {
-    document.getElementById('cartPage').style.display = 'none';
-    document.querySelector('.products').style.display = 'grid';
-    document.querySelector('.checkout').style.display = 'block';
-}
-
-async function completePurchase() {
+    }
+/*async function completePurchase() {
     if(!auth.currentUser){
         alert("⚠️ You must be signed in to complete a purchase.");
         showLoginUI();
         return;
     }
-    document.getElementById('payment-form').addEventListener('submit', async (event) => {
+    alert('Purchase completed successfully!');
+   const order = {
+       items: [...cart],
+       date: new Date().toISOString(),
+       paymentStatus: 'paid'
+   };
+   await addOrderToHistory(order);
+   cart = [];
+   //renderCartUI();
+   await saveCartToFirestore(cart);
+}*/
+
+document.getElementById('completePurchaseBtn').addEventListener('click', function() {
+    // Hide cart, show payment form
+    document.getElementById('cartPage').style.display = 'none';
+    document.getElementById('payment-form').style.display = 'block';
+});
+document.getElementById('payment-form').addEventListener('submit', async (event) => {
         event.preventDefault();
 
         // Optional: show loading spinner, disable button, etc.
@@ -486,21 +483,25 @@ async function completePurchase() {
         if (result.error) {
             document.getElementById('error-message').textContent = result.error;
         } else {
-            // Handle successful payment (redirect, show message, etc.)
-            window.location.href = '/success';
+            // After successful payment, update order history, clear cart, and return to shop UI
+            alert('Purchase completed successfully!');
+            const order = {
+                items: [...cart],
+                date: new Date().toISOString(),
+                paymentStatus: 'paid'
+            };
+            await addOrderToHistory(order);
+            cart = [];
+            await saveCartToFirestore(cart);
+            document.getElementById('payment-form').style.display = 'none';
+            showAppUI();
         }
     });
 
-   alert('Purchase completed successfully!');
-   const order = {
-       items: [...cart],
-       date: new Date().toISOString(),
-       paymentStatus: 'paid'
-   };
-   await addOrderToHistory(order);
-   cart = [];
-   //renderCartUI();
-   await saveCartToFirestore(cart);
+function closeCart() {
+    document.getElementById('cartPage').style.display = 'none';
+    document.querySelector('.products').style.display = 'grid';
+    document.querySelector('.checkout').style.display = 'block';
 }
 
 function showAddProductPage() {
@@ -797,6 +798,7 @@ window.onload = async () => {
         document.getElementById("signupNavBtn").style.display = "inline-block";
   }
 };
+
 
 
 
