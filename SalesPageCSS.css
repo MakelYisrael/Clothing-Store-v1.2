@@ -447,6 +447,7 @@ header {
 
 #payment-form input,
 #payment-form button,
+#backBtn,
 .StripeElement {
   width: 100%;
   padding: 0.7em 1em;
@@ -479,6 +480,21 @@ header {
   background: #bf0a30; /* red hover */
 }
 
+#backBtn {
+  background: #22335a;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 0.5em;
+}
+
+#backBtn:hover,
+#backBtn:focus {
+  background: #bf0a30; /* red hover */
+}
+
 #error-message {
   color: #bf0a30;
   font-size: 0.98em;
@@ -494,6 +510,7 @@ header {
     max-width: 98vw;
   }
 }
+
 
 
 
