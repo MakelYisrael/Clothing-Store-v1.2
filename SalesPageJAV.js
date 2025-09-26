@@ -5,6 +5,10 @@ import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from
 import { getFirestore, onSnapshot, doc, setDoc, getDoc, getDocs, updateDoc, deleteDoc, arrayUnion, addDoc, collection } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-storage.js";
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+const stripe = Stripe('pk_test_51Rj4tBRoAgT9eQD2QYj50J1WuvgSsvykzv2Ziyu4fPf5aAoQERALkLagCtnsE0pmJNc2NCdHfZw71vGurWwzoJC400nWFsMP97');
+const elements = stripe.elements();
+const cardElement = elements.create('card');
+cardElement.mount('#card-element'); // Make sure you have a <div id="card-element"></div> in your HTML
 
 const firebaseConfig = {
     apiKey: "AIzaSyAkONo3PzKXEyLOYhPmavD6A9bYkali9yw",
@@ -454,6 +458,39 @@ async function completePurchase() {
         showLoginUI();
         return;
     }
+    document.getElementById('payment-form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        // Optional: show loading spinner, disable button, etc.
+
+        // Create payment method with Stripe Elements
+        const { paymentMethod, error } = await stripe.createPaymentMethod({
+            type: 'card',
+            card: cardElement,
+        });
+
+        if (error) {
+            document.getElementById('error-message').textContent = error.message;
+            return;
+        }
+
+        // Send paymentMethod.id to your backend to create a PaymentIntent and complete the payment
+        const response = await fetch('/pay', { // Your backend endpoint
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ payment_method_id: paymentMethod.id })
+        });
+
+        const result = await response.json();
+
+        if (result.error) {
+            document.getElementById('error-message').textContent = result.error;
+        } else {
+            // Handle successful payment (redirect, show message, etc.)
+            window.location.href = '/success';
+        }
+    });
+
    alert('Purchase completed successfully!');
    const order = {
        items: [...cart],
@@ -760,6 +797,7 @@ window.onload = async () => {
         document.getElementById("signupNavBtn").style.display = "inline-block";
   }
 };
+
 
 
 
