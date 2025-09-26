@@ -498,7 +498,7 @@ document.getElementById('payment-form').addEventListener('submit', async (event)
             showAppUI();
         }
     });
-document.getElementById('backBtn').addEventListener('click', showAppUI);
+document.getElementById('back').addEventListener('click', showAppUI);
 
 function closeCart() {
     document.getElementById('cartPage').style.display = 'none';
@@ -800,6 +800,7 @@ window.onload = async () => {
         document.getElementById("signupNavBtn").style.display = "inline-block";
   }
 };
+
 
 
 
