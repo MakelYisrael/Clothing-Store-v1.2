@@ -168,6 +168,7 @@ function showAppUI() {
     document.querySelector('.checkout').style.display = 'block';
     document.getElementById('addProductNavBtn').style.display = 'none';
     document.getElementById('cartPage').style.display = 'none';
+    document.getElementById('payment-form').style.display = 'none';
 }
 
 function showLoginUI() {
@@ -799,6 +800,7 @@ window.onload = async () => {
         document.getElementById("signupNavBtn").style.display = "inline-block";
   }
 };
+
 
 
 
