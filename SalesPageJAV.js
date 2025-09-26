@@ -718,8 +718,9 @@ document.getElementById('closeCartBtn').addEventListener('click', closeCart);
 document.getElementById('completePurchaseBtn').addEventListener('click', completePurchase);
 
 function logout() {
-    confirm("Are you sure you want to logout?");
-    signOut(auth).then(() => {
+    let c = confirm("Are you sure you want to logout?");
+    if(c){
+        signOut(auth).then(() => {
         isLoggedIn = false;
         localStorage.setItem("loggedIn", "false");
         showAppUI();
@@ -727,6 +728,10 @@ function logout() {
         alert("Logout failed: " + error.message);
     });
     document.getElementById('cartPage').style.display = 'none';
+    }
+    else{
+        return;
+    }
 }
 
 window.onload = async () => {
@@ -755,6 +760,7 @@ window.onload = async () => {
         document.getElementById("signupNavBtn").style.display = "inline-block";
   }
 };
+
 
 
 
