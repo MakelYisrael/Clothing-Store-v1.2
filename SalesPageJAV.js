@@ -753,7 +753,7 @@ function renderProducts(selectedColor = 'all') {
 }
 document.getElementById('goToCheckoutBtn').addEventListener('click', goToCheckout);
 document.getElementById('closeCartBtn').addEventListener('click', closeCart);
-document.getElementById('completePurchaseBtn').addEventListener('click', completePurchase);
+//document.getElementById('completePurchaseBtn').addEventListener('click', completePurchase);
 
 function logout() {
     let c = confirm("Are you sure you want to logout?");
@@ -798,6 +798,7 @@ window.onload = async () => {
         document.getElementById("signupNavBtn").style.display = "inline-block";
   }
 };
+
 
 
 
