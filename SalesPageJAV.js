@@ -471,12 +471,15 @@ document.getElementById('payment-form').addEventListener('submit', async (event)
             document.getElementById('error-message').textContent = error.message;
             return;
         }
+        const totalAmount = cart.reduce((sum, item) => {
+        return sum + item.price * 100 * item.qty; // Stripe expects cents
+        }, 0);
 
         // Send paymentMethod.id to your backend to create a PaymentIntent and complete the payment
         const response = await fetch('https://architectonic-rampingly-cristi.ngrok-free.dev/pay', { // Your backend endpoint
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ payment_method_id: paymentMethod.id })
+            body: JSON.stringify({ payment_method_id: paymentMethod.id, amount: totalAmount})
         });
 
         const result = await response.json();
@@ -802,6 +805,7 @@ window.onload = async () => {
         document.getElementById("signinNavBtn").style.display = "inline-block";
   }
 };
+
 
 
 
