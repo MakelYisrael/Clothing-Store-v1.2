@@ -474,6 +474,7 @@ document.getElementById('payment-form').addEventListener('submit', async (event)
         const totalAmount = cart.reduce((sum, item) => {
         return sum + Math.round(item.price * 100) * item.qty;
         }, 0);
+    const amount = parseInt(totalAmount, 10);
     console.log("Total amount (in cents):", amount, typeof amount);
 
     // Send paymentMethod.id to your backend to create a PaymentIntent and complete the payment
@@ -806,6 +807,7 @@ window.onload = async () => {
         document.getElementById("signinNavBtn").style.display = "inline-block";
   }
 };
+
 
 
 
