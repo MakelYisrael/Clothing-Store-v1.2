@@ -472,7 +472,7 @@ document.getElementById('payment-form').addEventListener('submit', async (event)
             return;
         }
         const totalAmount = cart.reduce((sum, item) => {
-        return sum + Math.round(Number(item.price) * 100) * item.qty;
+        return sum + Math.round(item.price * 100) * item.qty;
         }, 0);
 
     // Send paymentMethod.id to your backend to create a PaymentIntent and complete the payment
@@ -805,6 +805,7 @@ window.onload = async () => {
         document.getElementById("signinNavBtn").style.display = "inline-block";
   }
 };
+
 
 
 
