@@ -473,7 +473,7 @@ document.getElementById('payment-form').addEventListener('submit', async (event)
         }
 
         // Send paymentMethod.id to your backend to create a PaymentIntent and complete the payment
-        const response = await fetch('https://10.0.0.238:3000/pay', { // Your backend endpoint
+        const response = await fetch('https://architectonic-rampingly-cristi.ngrok-free.dev/pay', { // Your backend endpoint
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ payment_method_id: paymentMethod.id })
@@ -802,6 +802,7 @@ window.onload = async () => {
         document.getElementById("signinNavBtn").style.display = "inline-block";
   }
 };
+
 
 
 
