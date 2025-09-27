@@ -476,7 +476,10 @@ document.getElementById('payment-form').addEventListener('submit', async (event)
         }, 0);
     const amount = parseInt(totalAmount, 10);
     console.log("Total amount (in cents):", amount, typeof amount);
-    console.log("Item quantity type:", typeof item.quantity); // Logs the type
+    cart.forEach(item => {
+    console.log("Item:", item);          // Log the whole item object
+    console.log("Item quantity type:", typeof item.qty); // Check if qty exists
+    });
 
     // Send paymentMethod.id to your backend to create a PaymentIntent and complete the payment
         const response = await fetch('https://architectonic-rampingly-cristi.ngrok-free.dev/pay', { // Your backend endpoint
@@ -808,6 +811,7 @@ window.onload = async () => {
         document.getElementById("signinNavBtn").style.display = "inline-block";
   }
 };
+
 
 
 
