@@ -474,6 +474,7 @@ document.getElementById('payment-form').addEventListener('submit', async (event)
         const totalAmount = cart.reduce((sum, item) => {
         return sum + Math.round(item.price * 100) * item.qty;
         }, 0);
+    console.log("Total amount (in cents):", amount, typeof amount);
 
     // Send paymentMethod.id to your backend to create a PaymentIntent and complete the payment
         const response = await fetch('https://architectonic-rampingly-cristi.ngrok-free.dev/pay', { // Your backend endpoint
@@ -805,6 +806,7 @@ window.onload = async () => {
         document.getElementById("signinNavBtn").style.display = "inline-block";
   }
 };
+
 
 
 
