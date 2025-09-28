@@ -489,6 +489,7 @@ document.getElementById('payment-form').addEventListener('submit', async (event)
         });
 
         const result = await response.json();
+        console.log(payment_method_id); // Log the ID for debugging
 
         if (result.error) {
             document.getElementById('error-message').textContent = result.error;
@@ -811,6 +812,7 @@ window.onload = async () => {
         document.getElementById("signinNavBtn").style.display = "inline-block";
   }
 };
+
 
 
 
